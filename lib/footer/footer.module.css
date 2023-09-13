@@ -1,0 +1,21 @@
+.footer {
+  min-height: 400px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer a,
+.footer img {
+  height: 30px;
+  width: auto;
+}
+
+.icon {
+  color: var(--color-text);
+}
+
+.copyrightText {
+  color: var(--color-text);
+}
