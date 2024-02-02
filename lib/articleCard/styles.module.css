@@ -1,15 +1,15 @@
 .articleCard {
-  border-bottom: 1px solid #e6e6dd;
   position: relative;
   text-decoration: none;
 }
 
 .articleDescription {
   padding: 16px;
-  margin: -100px 16px 16px;
+  margin: -100px 16px 32px;
   background: #ffffff;
   position: relative;
   z-index: 1;
+  word-wrap: break-word;
 }
 
 .title {
@@ -63,10 +63,6 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .articleCard {
-    border-bottom: 1px solid #3b3b3b;
-  }
-
   .articleDescription {
     background: var(--color-highlight);
   }

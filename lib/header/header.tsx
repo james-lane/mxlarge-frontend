@@ -1,15 +1,57 @@
-import styles from './styles.module.css';
+'use client';
+import styles from './header.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import LogoLight from '../../public/mxlarge-logo-light.svg';
 import LogoDark from '../../public/mxlarge-logo-dark.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/sharp-regular-svg-icons';
+import { faBars, faTimes } from '@fortawesome/sharp-regular-svg-icons';
+import { useState } from 'react';
+
+import { Oswald } from 'next/font/google';
+import classNames from 'classnames';
+
+const oswald = Oswald({ subsets: ['latin'] });
+
+const navigation = [
+  {
+    name: 'Home',
+    route: '/',
+  },
+  {
+    name: 'All News',
+    route: '/news',
+  },
+  {
+    name: 'Interviews',
+    route: '/interviews',
+  },
+  {
+    name: 'Galleries',
+    route: '/galleries',
+  },
+  {
+    name: 'Products & Bikes',
+    route: '/products',
+  },
+  {
+    name: 'Videos',
+    route: '/video',
+  },
+  {
+    name: 'Calendar',
+    route: '/calendar',
+  },
+  {
+    name: 'MXGP Live',
+    route: 'https://results.mxgp.com/mxgp/livestandings.aspx',
+  },
+];
 
 export const Header = () => {
+  const [navOpen, setNavOpen] = useState(false);
   return (
     <header className={styles.header} role="header">
-      <FontAwesomeIcon icon={faBars} className={styles.icon} />
       <Link href="/">
         <picture>
           <source srcSet={LogoLight.src} media="(prefers-color-scheme: dark)" />
@@ -24,6 +66,29 @@ export const Header = () => {
           />
         </picture>
       </Link>
+      <button className={styles.icon}>
+        <FontAwesomeIcon icon={faBars} onClick={() => setNavOpen(true)} />
+      </button>
+      {navOpen && (
+        <div className={styles.navContainer}>
+          <div
+            className={styles.navOverlay}
+            onClick={() => setNavOpen(false)}
+          ></div>
+          <nav className={classNames(oswald.className, styles.nav)}>
+            {navigation.map(({ name, route }, i) => (
+              <Link key={i} href={route}>
+                {name}
+              </Link>
+            ))}
+          </nav>
+          <button
+            className={classNames(styles.icon, navOpen && styles.icon_open)}
+          >
+            <FontAwesomeIcon icon={faTimes} onClick={() => setNavOpen(false)} />
+          </button>
+        </div>
+      )}
     </header>
   );
 };

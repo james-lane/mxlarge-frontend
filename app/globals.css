@@ -1,18 +1,22 @@
 :root {
   --color-highlight: #d80f2c;
+  --color-highlight-darker: #ba0f29;
+  --color-light: #eae9e3;
+  --color-lighter: #fafaf7;
+  --color-dark: #05010b;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --color-background: #fafaf7;
-    --color-text: #05010b;
+    --color-background: var(--color-light);
+    --color-text:  var(--color-dark);
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: #05010b;
-    --color-text: #fafaf7;
+    --color-background: var(--color-dark);
+    --color-text: var(--color-lighter);
   }
 }
 

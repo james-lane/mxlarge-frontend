@@ -9,10 +9,25 @@ import { faTag } from '@fortawesome/sharp-regular-svg-icons';
 const oswald = Oswald({ subsets: ['latin'] });
 const inter = Inter({ subsets: ['latin'] });
 
-export const ArticleCard = () => {
-  const tags = ['VIDEO', 'LIVE', 'STREAM'];
+export interface Tag {
+  title: string;
+}
+
+interface ArticleCardProps {
+  link: string;
+  title: string | undefined;
+  tags: Tag[] | undefined;
+  excerpt: string | undefined;
+}
+
+export const ArticleCard = ({
+  link,
+  title,
+  tags,
+  excerpt,
+}: ArticleCardProps) => {
   return (
-    <Link href={`/news/test`} className={styles.articleCard}>
+    <Link href={link} className={styles.articleCard}>
       <Image
         src="/example-story-header-small.jpeg"
         data-src="/example-story-header-small.jpeg"
@@ -23,25 +38,27 @@ export const ArticleCard = () => {
         priority
       />
       <div className={styles.articleDescription}>
-        <p className={classNames(oswald.className, styles.title)}>
-          WSX Events Cancelled
-        </p>
+        <p className={classNames(oswald.className, styles.title)}>{title}</p>
         <p className={classNames(inter.className, styles.subtitle)}>
-          The free Livestream on the new ADAC Motorsport YouTube channel and are
-          now available for Re-Live...
+          {excerpt}
         </p>
         <div className={classNames(inter.className, styles.meta)}>
           <p className={classNames()}>SEP 10</p>
-          <div className={classNames(styles.tags)}>
-            <FontAwesomeIcon icon={faTag} className={styles.icon} />
-            <ul>
-              {tags.map((tag, index) => (
-                <li key={index} className={classNames(styles.tag)}>
-                  {index === tags.length - 1 ? tag : `${tag},\u00A0`}
-                </li>
-              ))}
-            </ul>
-          </div>
+          {tags && (
+            <div className={classNames(styles.tags)}>
+              <FontAwesomeIcon icon={faTag} className={styles.icon} />
+
+              <ul>
+                {tags.map((tag, index) => (
+                  <li key={index} className={classNames(styles.tag)}>
+                    {index === tags.length - 1
+                      ? tag.title
+                      : `${tag.title},\u00A0`}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </Link>

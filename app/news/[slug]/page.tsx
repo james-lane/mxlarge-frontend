@@ -1,4 +1,4 @@
-import styles from './posts.module.css';
+import styles from './articlePage.module.css';
 import Image from 'next/image';
 import { Oswald, Inter } from 'next/font/google';
 import classNames from 'classnames';
@@ -10,28 +10,18 @@ const oswald = Oswald({ subsets: ['latin'] });
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Page({ params }: { params: { slug: string } }) {
-  console.log(params.slug);
   const tags = ['VIDEO', 'LIVE', 'STREAM'];
   return (
-    <main>
-      <div className={classNames(inter.className, styles.clientImg)}>
+    <main className={styles.article}>
+      <div className={styles.imageContainer}>
         <Image
-          src="/example-ad.gif"
-          alt="Example Ad"
-          width={728}
-          height={90}
-          sizes="100vw"
+          src="/example-story-header-small.jpeg"
+          data-src="/example-story-header-small.jpeg"
+          alt="Lazy Load Image"
+          fill
+          priority
         />
       </div>
-      <Image
-        src="/example-story-header-small.jpeg"
-        data-src="/example-story-header-small.jpeg"
-        alt="Lazy Load Image"
-        className={styles.image}
-        width={320}
-        height={320}
-        priority
-      />
       <div className={styles.articleDescription}>
         <p className={classNames(oswald.className, styles.title)}>
           WSX Events Cancelled
@@ -120,7 +110,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           sizes="100vw"
         />
       </div>
-      <ArticleList title={'More News'} highlight={true} />
+      <ArticleList highlight={true} />
     </main>
   );
 }
