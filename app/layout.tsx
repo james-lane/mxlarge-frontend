@@ -7,6 +7,8 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { Footer } from '@/lib/footer';
 config.autoAddCss = false;
 
+export const runtime = 'edge';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
