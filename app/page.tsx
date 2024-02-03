@@ -1,9 +1,10 @@
-import Image from 'next/image';
 import styles from './page.module.css';
 import { ArticleCard, Tag } from '@/lib/articleCard';
 import { ArticleList } from '@/lib/articleList/articleList';
 import { client } from '@/utils/sanity/client';
 import Link from 'next/link';
+import SanityImage from '@/lib/sanityImage/SanityImage';
+import { SanityAsset } from '@sanity/image-url/lib/types/types';
 
 type Post = {
   _id: string;
@@ -13,13 +14,14 @@ type Post = {
   };
   categories?: Tag[];
   excerpt?: string;
+  imageAsset: SanityAsset;
 };
 
 type Advert = {
   _id: string;
   title?: string;
   url: string;
-  imageUrl: string;
+  imageAsset: SanityAsset;
 };
 
 export default async function Home() {
@@ -29,6 +31,7 @@ export default async function Home() {
       title,
       slug,
       categories[]->{title},
+      "imageAsset": mainImage.asset,
       "excerpt": array::join(string::split((pt::text(body)), "")[0..100], "") + "..."}`
   );
 
@@ -37,7 +40,7 @@ export default async function Home() {
         _id,
         title,
         url,
-        "imageUrl": image.asset->url,
+        "imageAsset": image.asset,
       }`
   );
 
@@ -58,16 +61,16 @@ export default async function Home() {
                     title={post?.title}
                     tags={post?.categories}
                     excerpt={post?.excerpt}
+                    img={post?.imageAsset}
                   />
                 </li>
                 <li className={styles.clientImg}>
                   <Link href={randomHomepageAd().url}>
-                    <Image
-                      src={randomHomepageAd().imageUrl}
+                    <SanityImage
+                      src={randomHomepageAd().imageAsset}
                       alt="Example Ad"
                       width={300}
                       height={600}
-                      sizes="100vw"
                     />
                   </Link>
                 </li>
@@ -82,6 +85,7 @@ export default async function Home() {
                 title={post?.title}
                 tags={post?.categories}
                 excerpt={post?.excerpt}
+                img={post?.imageAsset}
               />
             </li>
           );
