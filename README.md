@@ -18,17 +18,10 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Deploying
 
-To learn more about Next.js, take a look at the following resources:
+This project is deployed on Cloudflare pages. Pushes to main will trigger a build on Cloudflare pages instantly.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To confirm that builds will deploy successfully, you can run the project locally. The project uses [Next on Pages]('https://github.com/cloudflare/next-on-pages/tree/main/packages/next-on-pages#cloudflarenext-on-pages') by Cloudflare.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To run locally, you can use the standard dev command, but to see what it will look like on CF Pages you will need to run `npx @cloudflare/next-on-pages [--watch]` in one termincal and `npx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat` in another terminal once the first has completed.

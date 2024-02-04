@@ -6,6 +6,7 @@ import Image, { ImageProps } from 'next/image';
 
 type Props = Omit<ImageProps, 'src'> & {
   src: SanityImageSource;
+  advert: boolean;
 };
 
 export default function SanityImage({ src, alt, ...props }: Props) {
@@ -13,7 +14,7 @@ export default function SanityImage({ src, alt, ...props }: Props) {
     <Image
       src="Fake src to avoid error"
       alt={alt}
-      loader={({ width, quality = 80 }) =>
+      loader={({ width, quality = 75 }) =>
         urlForImage(src).width(width).quality(quality).url()
       }
       {...props}

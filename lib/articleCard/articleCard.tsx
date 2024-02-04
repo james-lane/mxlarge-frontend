@@ -36,7 +36,7 @@ export const ArticleCard = ({
         src={img}
         alt="Lazy Load Image"
         className={styles.image}
-        width={320}
+        width={414}
         height={300}
         priority
       />

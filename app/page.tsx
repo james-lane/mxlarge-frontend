@@ -19,7 +19,7 @@ type Post = {
 
 type Advert = {
   _id: string;
-  title?: string;
+  title: string;
   url: string;
   imageAsset: SanityAsset;
 };
@@ -68,9 +68,11 @@ export default async function Home() {
                   <Link href={randomHomepageAd().url}>
                     <SanityImage
                       src={randomHomepageAd().imageAsset}
-                      alt="Example Ad"
+                      alt={randomHomepageAd().title}
                       width={300}
                       height={600}
+                      quality={90}
+                      sizes="300px"
                     />
                   </Link>
                 </li>
