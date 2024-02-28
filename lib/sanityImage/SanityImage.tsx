@@ -6,7 +6,7 @@ import Image, { ImageProps } from 'next/image';
 
 type Props = Omit<ImageProps, 'src'> & {
   src: SanityImageSource;
-  advert: boolean;
+  advert?: boolean;
 };
 
 export default function SanityImage({ src, alt, ...props }: Props) {
