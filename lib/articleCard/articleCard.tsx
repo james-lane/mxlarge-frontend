@@ -1,4 +1,4 @@
-import styles from './styles.module.css';
+import styles from './articleCard.module.css';
 import Image from 'next/image';
 import { Oswald, Inter } from 'next/font/google';
 import classNames from 'classnames';
@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTag } from '@fortawesome/sharp-regular-svg-icons';
 import { SanityAsset } from '@sanity/image-url/lib/types/types';
 import SanityImage from '../sanityImage/SanityImage';
+import classnames from 'classnames';
 
 const oswald = Oswald({ subsets: ['latin'] });
 const inter = Inter({ subsets: ['latin'] });
@@ -21,6 +22,7 @@ interface ArticleCardProps {
   tags: Tag[] | undefined;
   excerpt: string | undefined;
   img: SanityAsset;
+  className: string;
 }
 
 export const ArticleCard = ({
@@ -29,16 +31,16 @@ export const ArticleCard = ({
   tags,
   excerpt,
   img,
+  className,
 }: ArticleCardProps) => {
   return (
-    <Link href={link} className={styles.articleCard}>
+    <Link href={link} className={classnames(styles.articleCard, className)}>
       <SanityImage
         src={img}
         alt="Lazy Load Image"
         className={styles.image}
-        width={414}
-        height={300}
         priority
+        fill
       />
       <div className={styles.articleDescription}>
         <p className={classNames(oswald.className, styles.title)}>{title}</p>

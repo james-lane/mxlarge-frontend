@@ -49,7 +49,7 @@
   overflow-x: scroll;
   height: 100vh;
   min-width: 260px;
-  max-width: 80vw;
+  max-width: 280px;
   width: 100%;
   display: flex;
   flex-flow: column;

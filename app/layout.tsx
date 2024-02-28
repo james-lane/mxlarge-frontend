@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { Footer } from '@/lib/footer';
+import styles from './layout.module.css';
 config.autoAddCss = false;
 
 export const runtime = 'edge';
@@ -25,7 +26,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        {children}
+        <div className={styles.container}>
+          <div className={styles.content}>{children}</div>
+        </div>
         <Footer />
       </body>
     </html>
