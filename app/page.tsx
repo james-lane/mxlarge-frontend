@@ -32,7 +32,7 @@ export default async function Home() {
       slug,
       categories[]->{title},
       "imageAsset": mainImage.asset,
-      "excerpt": array::join(string::split((pt::text(body)), "")[0..100], "") + "..."}`
+      "excerpt": array::join(string::split((pt::text(body)), "")[0..70], "") + "..."}`
   );
 
   const homepageAds = await client.fetch<Advert[]>(
@@ -146,7 +146,7 @@ export default async function Home() {
           </Link>
         </div>
       </div>
-      <ArticleList />
+      <ArticleList highlight={true} />
     </main>
   );
 }
