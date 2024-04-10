@@ -1,28 +1,9 @@
 import styles from './page.module.css';
-import { ArticleCard, Tag } from '@/lib/articleCard';
-import { ArticleList } from '@/lib/articleList/articleList';
+import { ArticleCard } from '@/lib/articleCard';
 import { client } from '@/utils/sanity/client';
 import Link from 'next/link';
 import SanityImage from '@/lib/sanityImage/SanityImage';
-import { SanityAsset } from '@sanity/image-url/lib/types/types';
-
-type Post = {
-  _id: string;
-  title?: string;
-  slug: {
-    current: string;
-  };
-  categories?: Tag[];
-  excerpt?: string;
-  imageAsset: SanityAsset;
-};
-
-type Advert = {
-  _id: string;
-  title: string;
-  url: string;
-  imageAsset: SanityAsset;
-};
+import { Post, Advert } from '@/lib/types';
 
 export default async function Home() {
   const posts = await client.fetch<Post[]>(

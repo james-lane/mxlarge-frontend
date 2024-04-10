@@ -66,3 +66,9 @@
     grid-row: 1 / span 2;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  .footer {
+    background: var(--color-dark);
+  }
+}
