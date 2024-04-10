@@ -46,7 +46,7 @@
   }
 
   .articleContainer {
-    grid-column: span 2;
+    grid-column: span 4;
   }
 
   .articleDescription {
@@ -55,17 +55,17 @@
 
   .articleContainer:nth-child(1) {
     grid-column: 1 / span 4;
-    height: 80vh;
+    height: 50vh;
+    min-height: 250px;
   }
 
   .articleContainer:nth-child(1) [class^="articleCard_articleDescription"] {
-    width: 50%;
-    justify-self: flex-end;
-    align-self: flex-start;
-    margin: 24px -24px 24px 24px;
+    position: absolute;
+    justify-self: flex-start;
+    align-self: flex-end;
     grid-row: 1;
-    position: sticky;
-    top: 48px;
+    width: 50%;
+    margin: 1rem 1rem 0;
   }
 
   .articleContainer:nth-child(2) {
@@ -95,5 +95,11 @@
     display: flex;
     justify-content: center;
     padding: 24px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .articleContainer {
+    grid-column: span 2;
   }
 }

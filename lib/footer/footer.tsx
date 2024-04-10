@@ -31,13 +31,27 @@ export const Footer = () => {
         </picture>
       </Link>
       <div className={styles.socialLinks}>
-        <FontAwesomeIcon icon={faSquareFacebook} className={styles.icon} />
-        <FontAwesomeIcon icon={faYoutubeSquare} className={styles.icon} />
+        <Link href="/" className={styles.socialLink}>
+          <FontAwesomeIcon icon={faSquareFacebook} className={styles.icon} />
+        </Link>
+        <Link href="/" className={styles.socialLink}>
+          <FontAwesomeIcon icon={faYoutubeSquare} className={styles.icon} />
+        </Link>
       </div>
-      <Link href="/">About</Link>
-      <Link href="/">Advertise with us</Link>
-      <Link href="/">Cookie policy</Link>
-      <Link href="/">Contact us</Link>
+      <div className={styles.footerLinks}>
+        <Link href="/" className={styles.footerLink}>
+          About
+        </Link>
+        <Link href="/" className={styles.footerLink}>
+          Advertise with us
+        </Link>
+        <Link href="/" className={styles.footerLink}>
+          Cookie policy
+        </Link>
+        <Link href="/" className={styles.footerLink}>
+          Contact us
+        </Link>
+      </div>
       <small className={classNames(inter.className, styles.copyrightText)}>
         Copyright © MX Large {new Date().getFullYear()}
       </small>
