@@ -4,7 +4,10 @@
   align-items: center;
   min-height: 60px;
   border-bottom: 1px solid var(--color-highlight);
+  background: var(--color-background);
   position: relative;
+  max-width: 1024px;
+  margin: 0 auto;
 }
 
 .header a,

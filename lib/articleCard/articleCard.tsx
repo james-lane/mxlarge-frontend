@@ -22,7 +22,7 @@ interface ArticleCardProps {
   tags: Tag[] | undefined;
   excerpt: string | undefined;
   img: SanityAsset;
-  className: string;
+  className?: string;
 }
 
 export const ArticleCard = ({

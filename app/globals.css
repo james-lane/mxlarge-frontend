@@ -26,6 +26,9 @@
 }
 
 body {
-  background: var(--color-background);
   margin: 0;
+  background: url(https://www.mxlarge.com/images/publishers-wide/thumbnail_OMXGraphics-Banners-MXLarge-2024-1950x950.jpg);
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
