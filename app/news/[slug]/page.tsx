@@ -8,8 +8,6 @@ import { client } from '@/utils/sanity/client';
 import { Advert, Post } from '@/lib/types';
 import SanityImage from '@/lib/sanityImage/SanityImage';
 import { PortableText } from '@portabletext/react';
-import { SimilarArticles } from '@/lib/similarArticles/similarArticles';
-import { ArticleList } from '@/lib/articleList';
 import { ArticleCard } from '@/lib/articleCard';
 import Link from 'next/link';
 
