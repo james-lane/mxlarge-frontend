@@ -65,7 +65,6 @@ export default async function Home() {
             width={970}
             height={250}
             quality={90}
-            sizes="300px"
             priority
           />
         </Link>

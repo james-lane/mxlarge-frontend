@@ -31,10 +31,10 @@ export const Footer = () => {
         </picture>
       </Link>
       <div className={styles.socialLinks}>
-        <Link href="/" className={styles.socialLink}>
+        <Link href="/" className={styles.socialLink} title="MX Large Facebook">
           <FontAwesomeIcon icon={faSquareFacebook} className={styles.icon} />
         </Link>
-        <Link href="/" className={styles.socialLink}>
+        <Link href="/" className={styles.socialLink} title="MX Large Youtube">
           <FontAwesomeIcon icon={faYoutubeSquare} className={styles.icon} />
         </Link>
       </div>

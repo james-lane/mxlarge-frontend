@@ -66,7 +66,7 @@ export const Header = () => {
           />
         </picture>
       </Link>
-      <button className={styles.icon}>
+      <button className={styles.icon} title="Navigation">
         <FontAwesomeIcon icon={faBars} onClick={() => setNavOpen(true)} />
       </button>
       {navOpen && (
