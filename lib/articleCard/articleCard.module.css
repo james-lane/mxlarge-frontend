@@ -79,5 +79,9 @@
 @media screen and (min-width: 768px) {
   .articleDescription {
     margin: auto;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
   }
 }

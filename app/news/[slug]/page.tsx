@@ -115,15 +115,14 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <h2 className={styles.similarArticlesTitle}>More similar articles</h2>
         {similarStories &&
           similarStories.map((story: Post, index) => (
-            <Link href={'#'} key={index}>
-              <ArticleCard
-                link={`news/${story?.slug.current}`}
-                title={story?.title}
-                tags={story?.categories}
-                excerpt={story?.excerpt}
-                img={story?.imageAsset}
-              />
-            </Link>
+            <ArticleCard
+              key={index}
+              link={`news/${story?.slug.current}`}
+              title={story?.title}
+              tags={story?.categories}
+              excerpt={story?.excerpt}
+              img={story?.imageAsset}
+            />
           ))}
       </div>
     </main>

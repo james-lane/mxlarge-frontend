@@ -70,5 +70,6 @@
 @media (prefers-color-scheme: dark) {
   .footer {
     background: var(--color-dark);
+    border-top: 4px solid var(--color-highlight);
   }
 }
