@@ -28,8 +28,12 @@ export default function SanityImage({ src, alt, ...props }: Props) {
         src="Fake src to avoid error"
         alt={alt}
         blurDataURL={base64ImageUrl}
-        loader={({ quality = 75 }) =>
-          urlForImage(src).quality(quality).auto('format').url()
+        loader={({ width, quality = 75 }) =>
+          urlForImage(src)
+            .width((props.width as number) || width)
+            .quality(quality)
+            .auto('format')
+            .url()
         }
         {...props}
       />
