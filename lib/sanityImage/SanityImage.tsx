@@ -21,15 +21,15 @@ export default function SanityImage({ src, alt, ...props }: Props) {
       .auto('format')
       .url()
   );
-  console.log(base64ImageUrl);
+
   return (
     <div className={classnames(styles.imageContainer, props.className)}>
       <Image
         src="Fake src to avoid error"
         alt={alt}
         blurDataURL={base64ImageUrl}
-        loader={({ width, quality = 75 }) =>
-          urlForImage(src).width(width).quality(quality).auto('format').url()
+        loader={({ quality = 75 }) =>
+          urlForImage(src).quality(quality).auto('format').url()
         }
         {...props}
       />

@@ -17,6 +17,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@fortawesome/sharp-regular-svg-icons": "^6.4.2",
     "@portabletext/react": "^3.0.17",
+    "@sanity/asset-utils": "^1.3.0",
     "@sanity/client": "^6.4.6",
     "@sanity/image-url": "^1.0.2",
     "@types/node": "20.5.0",
