@@ -51,7 +51,7 @@ const navigation = [
 export const Header = () => {
   const [navOpen, setNavOpen] = useState(false);
   return (
-    <header className={styles.header} role="header">
+    <header className={styles.header}>
       <Link href="/">
         <picture>
           <source srcSet={LogoLight.src} media="(prefers-color-scheme: dark)" />

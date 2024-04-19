@@ -15,7 +15,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const Footer = () => {
   return (
-    <footer className={styles.footer} role="header">
+    <footer className={styles.footer}>
       <Link href="/">
         <picture>
           <source srcSet={LogoLight.src} media="(prefers-color-scheme: dark)" />
