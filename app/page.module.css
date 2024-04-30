@@ -55,18 +55,10 @@
 
   .articleContainer:nth-child(1) {
     grid-column: 1 / span 4;
-    height: 50vh;
-    min-height: 250px;
   }
 
   .articleContainer:nth-child(1) [class^="articleCard_articleDescription"] {
-    position: absolute;
-    justify-self: flex-start;
-    align-self: flex-end;
-    grid-row: 1;
-    width: 50%;
-    margin: 1rem 1rem 0;
-    height: auto;
+    width: 100%;
   }
 
   .articleContainer:nth-child(2) {
