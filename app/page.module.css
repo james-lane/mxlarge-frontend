@@ -57,8 +57,8 @@
     grid-column: 1 / span 4;
   }
 
-  .articleContainer:nth-child(1) [class^="articleCard_articleDescription"] {
-    width: 100%;
+  .articleContainer:nth-child(1) [class^="articleCard"] {
+    grid-template-rows: 400px auto;
   }
 
   .articleContainer:nth-child(2) {

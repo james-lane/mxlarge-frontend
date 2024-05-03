@@ -12,8 +12,8 @@ export default async function Home() {
       title,
       slug,
       categories[]->{title},
-      "imageAsset": mainImage.asset,
-      "excerpt": array::join(string::split((pt::text(body)), "")[0..70], "") + "..."}`
+      "imageAsset": mainImage.asset
+    }`
   );
 
   const homepageAds = await client.fetch<Advert[]>(
@@ -80,7 +80,6 @@ export default async function Home() {
                       link={`news/${post?.slug.current}`}
                       title={post?.title}
                       tags={post?.categories}
-                      excerpt={post?.excerpt}
                       img={post?.imageAsset}
                       className={styles.article}
                     />
@@ -106,7 +105,6 @@ export default async function Home() {
                   link={`news/${post?.slug.current}`}
                   title={post?.title}
                   tags={post?.categories}
-                  excerpt={post?.excerpt}
                   img={post?.imageAsset}
                   className={styles.article}
                 />

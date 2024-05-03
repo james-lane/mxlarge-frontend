@@ -9,7 +9,6 @@ export type Post = {
     current: string;
   };
   categories?: Tag[];
-  excerpt?: string;
   imageAsset: SanityAsset;
   body?: PortableTextBlock[];
 };

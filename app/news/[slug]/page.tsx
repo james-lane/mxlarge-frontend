@@ -32,8 +32,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
         title,
         slug,
         categories[]->{title},
-        "imageAsset": mainImage.asset,
-        "excerpt": array::join(string::split((pt::text(body)), "")[0..70], "") + "..."}[0..1]`
+        "imageAsset": mainImage.asset
+    }`
   );
 
   const homepageAds = await client.fetch<Advert[]>(
@@ -120,7 +120,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
               link={`news/${story?.slug.current}`}
               title={story?.title}
               tags={story?.categories}
-              excerpt={story?.excerpt}
               img={story?.imageAsset}
             />
           ))}

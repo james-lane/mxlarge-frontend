@@ -32,11 +32,6 @@ top: 2rem;
   color: var(--color-lighter);
 }
 
-.subtitle {
-  margin: 0 0 16px;
-  color: var(--color-lighter);
-}
-
 .content {
   color: var(--color-text);
   font-size: 1rem;

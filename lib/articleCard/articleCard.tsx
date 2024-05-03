@@ -1,5 +1,4 @@
 import styles from './articleCard.module.css';
-import Image from 'next/image';
 import { Oswald, Inter } from 'next/font/google';
 import classNames from 'classnames';
 import Link from 'next/link';
@@ -20,7 +19,6 @@ interface ArticleCardProps {
   link: string;
   title: string | undefined;
   tags: Tag[] | undefined;
-  excerpt: string | undefined;
   img: SanityAsset;
   className?: string;
 }
@@ -29,7 +27,6 @@ export const ArticleCard = ({
   link,
   title,
   tags,
-  excerpt,
   img,
   className,
 }: ArticleCardProps) => {
@@ -44,9 +41,6 @@ export const ArticleCard = ({
       />
       <div className={styles.articleDescription}>
         <p className={classNames(oswald.className, styles.title)}>{title}</p>
-        <p className={classNames(inter.className, styles.subtitle)}>
-          {excerpt}
-        </p>
         <div className={classNames(inter.className, styles.meta)}>
           <p className={classNames()}>SEP 10</p>
           {tags && (
