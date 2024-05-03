@@ -11,6 +11,8 @@
 
 .clientImg_billboard {
   padding: 1rem;
+  max-width: 970px;
+  margin: 0 auto;
 }
 
 .clientImg_leaderboard [class^="sanityImage"], 
@@ -77,10 +79,10 @@
   }
 
   .clientImg_billboard {
-    width: 100%;
     display: flex;
     justify-content: center;
-    padding: 1.5rem 1.5rem 0;
+    margin-top: 1.5rem;
+    padding: 0;
   }
 
   .clientImg_leaderboard {

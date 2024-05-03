@@ -64,7 +64,7 @@ export default async function Home() {
             alt={randomBillboardAd().title}
             width={970}
             height={250}
-            quality={90}
+            quality={100}
             priority
           />
         </Link>
