@@ -104,7 +104,7 @@ export default async function Home() {
                 <ArticleCard
                   link={`news/${post?.slug.current}`}
                   title={post?.title}
-                  tags={post?.categories}
+                  tags={post?.categories || null}
                   img={post?.imageAsset}
                   className={styles.article}
                 />
