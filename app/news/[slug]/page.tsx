@@ -66,8 +66,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const serializers = {
     types: {
       youtube: ({ value }: youtubeType) => {
-        console.log('hello');
-        console.log(value.url);
         const { url } = value;
         return <VideoPlayer url={url} />;
       },
