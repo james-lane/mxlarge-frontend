@@ -1,6 +1,6 @@
 import { SanityAsset } from '@sanity/image-url/lib/types/types';
-import { Tag } from '@/lib/articleCard';
 import { PortableTextBlock } from '@portabletext/react';
+import { Tag } from './descriptionContainer';
 
 export type Post = {
   _id: string;

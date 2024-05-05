@@ -54,6 +54,19 @@ export default async function Page({ params }: { params: { slug: string } }) {
         const { url } = value;
         return <VideoPlayer url={url} />;
       },
+      image: ({ value }: any) => {
+        console.log(value);
+        return (
+          <div className={styles.contentImage}>
+            <SanityImage
+              src={value.asset}
+              alt={'alt'}
+              className={styles.image}
+              fill
+            />
+          </div>
+        );
+      },
     },
   };
 
