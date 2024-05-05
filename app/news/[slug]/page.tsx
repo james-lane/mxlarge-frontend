@@ -10,6 +10,7 @@ import SanityImage from '@/lib/sanityImage/SanityImage';
 import { PortableText } from '@portabletext/react';
 import { ArticleCard } from '@/lib/articleCard';
 import Link from 'next/link';
+import VideoPlayer from '@/lib/videoPlayer/videoPlayer';
 
 const oswald = Oswald({ subsets: ['latin'] });
 const inter = Inter({ subsets: ['latin'] });
@@ -27,7 +28,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   );
 
   const similarStories = await client.fetch<Post[]>(
-    `*[_type == "post"]{
+    `*[_type == "post"][0..1]{
         _id,
         title,
         slug,
@@ -51,6 +52,17 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   const tags = post.categories;
 
+  const serializers = {
+    types: {
+      youtube: ({ value }) => {
+        console.log('hello');
+        console.log(value.url);
+        const { url } = value;
+        return <VideoPlayer url={url} />;
+      },
+    },
+  };
+
   return (
     <main className={styles.article}>
       <div className={styles.imageContainer}>
@@ -62,31 +74,31 @@ export default async function Page({ params }: { params: { slug: string } }) {
           fill
         />
       </div>
-      <div className={styles.articleDescription}>
-        <p className={classNames(oswald.className, styles.title)}>
-          {post.title}
-        </p>
-        <div className={classNames(inter.className, styles.meta)}>
-          <p className={classNames()}>SEP 10</p>
-          <div className={classNames(styles.tags)}>
-            <FontAwesomeIcon icon={faTag} className={styles.icon} />
-            {tags && tags.length > 0 && (
-              <ul>
-                {tags.map((tag, index) => (
-                  <li key={index} className={classNames(styles.tag)}>
-                    {index === tags.length - 1
-                      ? tag.title
-                      : `${tag.title},\u00A0`}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-      </div>
       <div className={styles.articleBody}>
         <div className={styles.content}>
-          <PortableText value={post.body!} />
+          <div className={styles.articleDescription}>
+            <p className={classNames(oswald.className, styles.title)}>
+              {post.title}
+            </p>
+            <div className={classNames(inter.className, styles.meta)}>
+              <p className={classNames()}>SEP 10</p>
+              <div className={classNames(styles.tags)}>
+                <FontAwesomeIcon icon={faTag} className={styles.icon} />
+                {tags && tags.length > 0 && (
+                  <ul>
+                    {tags.map((tag, index) => (
+                      <li key={index} className={classNames(styles.tag)}>
+                        {index === tags.length - 1
+                          ? tag.title
+                          : `${tag.title},\u00A0`}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+          </div>
+          <PortableText value={post.body!} components={serializers} />
           <div className={classNames(inter.className, styles.clientImg)}>
             <Image
               src="/example-ad.gif"

@@ -5,7 +5,7 @@
 
 .articleDescription {
   padding: 16px;
-  margin: -86px 16px 0;
+  margin: -86px 0 0;
   background: var(--color-highlight);
   position: relative;
   z-index: 1;
