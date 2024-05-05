@@ -13,7 +13,7 @@ export interface Tag {
 
 interface DescriptionProps {
   title: string | undefined;
-  tags: Tag[] | undefined;
+  tags: Tag[] | null;
   className?: string;
 }
 

@@ -8,7 +8,7 @@ import { Description, Tag } from '../descriptionContainer/descriptionContainer';
 interface ArticleCardProps {
   link: string;
   title: string | undefined;
-  tags: Tag[] | undefined;
+  tags: Tag[] | null;
   img: SanityAsset;
   className?: string;
 }
