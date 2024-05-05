@@ -15,17 +15,6 @@ import VideoPlayer from '@/lib/videoPlayer/videoPlayer';
 const oswald = Oswald({ subsets: ['latin'] });
 const inter = Inter({ subsets: ['latin'] });
 
-type youtubeType = {
-  value: {
-    _type: string;
-    _key: string;
-    url: string;
-  };
-  isInline: false;
-  index: 1;
-  renderNode: any;
-};
-
 export default async function Page({ params }: { params: { slug: string } }) {
   const post = await client.fetch<Post>(
     `*[_type == "post" && slug.current == "${params.slug}"] | order(_updatedAt desc) [0] {
@@ -65,7 +54,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   const serializers = {
     types: {
-      youtube: ({ value }: youtubeType) => {
+      youtube: ({ value }: any) => {
         const { url } = value;
         return <VideoPlayer url={url} />;
       },
