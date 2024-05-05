@@ -85,7 +85,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <div className={styles.content}>
           <Description
             title={post.title}
-            tags={post.categories}
+            tags={post.categories || null}
             className={styles.articleDescription}
           />
           <PortableText value={post.body!} components={serializers} />
@@ -125,7 +125,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
               key={index}
               link={`/news/${story?.slug.current}`}
               title={story?.title}
-              tags={story?.categories}
+              tags={story?.categories || null}
               img={story?.imageAsset}
             />
           ))}
