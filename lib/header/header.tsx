@@ -19,10 +19,6 @@ const navigation = [
     route: '/',
   },
   {
-    name: 'All News',
-    route: '/news',
-  },
-  {
     name: 'Interviews',
     route: '/interviews',
   },
@@ -31,7 +27,7 @@ const navigation = [
     route: '/galleries',
   },
   {
-    name: 'Products & Bikes',
+    name: 'Products',
     route: '/products',
   },
   {
