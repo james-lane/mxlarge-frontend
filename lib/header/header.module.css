@@ -30,6 +30,7 @@
   align-items: center;
   margin: 8px;
   padding: 0;
+  cursor: pointer;
 }
 
 .icon_open {

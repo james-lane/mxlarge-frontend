@@ -28,3 +28,7 @@
 body {
   margin: 0;
 }
+
+a {
+  color: var(--color-highlight);
+}

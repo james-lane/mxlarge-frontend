@@ -66,8 +66,12 @@ export const Header = () => {
           />
         </picture>
       </Link>
-      <button className={styles.icon} title="Navigation">
-        <FontAwesomeIcon icon={faBars} onClick={() => setNavOpen(true)} />
+      <button
+        className={styles.icon}
+        title="Navigation"
+        onClick={() => setNavOpen(true)}
+      >
+        <FontAwesomeIcon icon={faBars} />
       </button>
       {navOpen && (
         <div className={styles.navContainer}>
@@ -84,8 +88,9 @@ export const Header = () => {
           </nav>
           <button
             className={classNames(styles.icon, navOpen && styles.icon_open)}
+            onClick={() => setNavOpen(false)}
           >
-            <FontAwesomeIcon icon={faTimes} onClick={() => setNavOpen(false)} />
+            <FontAwesomeIcon icon={faTimes} />
           </button>
         </div>
       )}

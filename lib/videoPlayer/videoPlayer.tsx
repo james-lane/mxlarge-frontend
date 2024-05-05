@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player/youtube';
 import { useState, useEffect } from 'react';
 import styles from './videoPlayer.module.css';
 
-export default function VideoPlayer({ url }) {
+export default function VideoPlayer({ url }: { [key: string]: string }) {
   const [hasWindow, setHasWindow] = useState(false);
 
   useEffect(() => {

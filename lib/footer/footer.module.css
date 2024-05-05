@@ -9,7 +9,6 @@
 
 .footer a,
 .footer img {
-  height: 30px;
   width: auto;
 }
 
@@ -21,7 +20,6 @@
 }
 
 .socialLink {
-  width: 44px;
   height: 44px;
   display: flex;
   justify-content: center;
@@ -32,6 +30,8 @@
 .icon {
   color: var(--color-text);
   height: 32px;
+  width: 32px;
+  font-size: 2rem;
 }
 
 .copyrightText {
@@ -41,10 +41,8 @@
 .footerLink {
   text-decoration: none;
   color: var(--color-text);
-}
-
-.socialLinks {
-  grid-column: 1;
+  height: 30px;
+  
 }
 
 .footerLinks {

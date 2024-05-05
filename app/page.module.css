@@ -10,9 +10,15 @@
 }
 
 .clientImg_billboard {
-  padding: 1rem;
-  max-width: 970px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem auto;
+  padding: 0;
+  max-width: calc(100vw - 3rem);
+}
+
+.clientImg_billboard img {
+  max-width: calc(100vw - 3rem);
 }
 
 .clientImg_leaderboard [class^="sanityImage"], 
@@ -30,10 +36,10 @@
 
 .articles {
   list-style: none;
-  padding: 0;
+  padding: 0 0 1.5rem;
   margin: 0;
   display: grid;
-  gap: 24px;
+  gap: 1.5rem;
 }
 
 @media screen and (min-width: 768px) {
@@ -44,7 +50,7 @@
 
   .articles {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    padding: 24px;
+    padding: 0 1.5rem 1.5rem;
   }
 
   .articleContainer {
@@ -70,19 +76,12 @@
   .clientImg_sidebar {
     grid-column: 2;
     grid-row: 1;
-    padding: 1.5rem 1.5rem 1.5rem 0;
+    padding: 0 1.5rem 1.5rem 0;
   }
 
   .clientImg_sidebar img {
     position: sticky;
     top: 1.5rem;
-  }
-
-  .clientImg_billboard {
-    display: flex;
-    justify-content: center;
-    margin-top: 1.5rem;
-    padding: 0;
   }
 
   .clientImg_leaderboard {
