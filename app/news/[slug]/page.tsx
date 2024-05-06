@@ -22,7 +22,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const post: Post = await sanityFetch({
     query: singlePostQuery,
     // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
-    tags: [],
+    tags: ['post'],
     qParams: { slug: params.slug },
   });
 

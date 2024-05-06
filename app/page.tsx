@@ -15,7 +15,7 @@ export default async function Home() {
   const posts: Post[] = await sanityFetch({
     query: postQuery,
     // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
-    tags: [],
+    tags: ['post'],
   });
 
   const homepageAds: Advert[] = await sanityFetch({
