@@ -19,7 +19,7 @@ import {
 const oswald = Oswald({ subsets: ['latin'] });
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const post: Post[] = await sanityFetch({
+  const post: Post = await sanityFetch({
     query: singlePostQuery,
     // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
     tags: [],
@@ -79,6 +79,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <div className={styles.content}>
           <Description
             title={post.title}
+            publishedDate={post.publishedAt || null}
             tags={post.categories || null}
             className={styles.articleDescription}
           />
@@ -119,6 +120,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
               key={index}
               link={`/news/${story?.slug.current}`}
               title={story?.title}
+              publishedDate={story?.publishedAt || null}
               tags={story?.categories || null}
               img={story?.imageAsset}
             />

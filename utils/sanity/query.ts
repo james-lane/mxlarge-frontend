@@ -16,6 +16,7 @@ import { groq } from 'next-sanity';
 export const singlePostQuery = groq`*[_type == "post" && slug.current == $slug && !(_id in path('drafts.**')) && !(slug == null)] | order(_updatedAt desc) [0] {
   _id,
   title,
+  publishedAt,
   slug,
   categories[]->{title},
   "imageAsset": mainImage.asset,
