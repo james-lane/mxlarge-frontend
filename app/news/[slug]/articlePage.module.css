@@ -99,9 +99,3 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-@media (prefers-color-scheme: dark) {
-  .articleCard {
-    border-bottom: 1px solid #3b3b3b;
-  }
-}

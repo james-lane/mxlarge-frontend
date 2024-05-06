@@ -11,18 +11,31 @@ export interface Tag {
   title: string;
 }
 
-interface DescriptionProps {
+export interface DescriptionProps {
   title: string | undefined;
   tags: Tag[] | null;
+  publishedDate: string | null;
   className?: string;
 }
 
-export const Description = ({ title, tags, className }: DescriptionProps) => {
+export const Description = ({
+  title,
+  tags,
+  publishedDate,
+  className,
+}: DescriptionProps) => {
+  const metaDate = new Date(publishedDate || '').toLocaleDateString(undefined, {
+    month: 'short',
+    day: 'numeric',
+  });
+
   return (
     <div className={classnames(styles.articleDescription, className)}>
       <p className={classnames(oswald.className, styles.title)}>{title}</p>
       <div className={classnames(inter.className, styles.meta)}>
-        <p className={classnames()}>SEP 10</p>
+        {publishedDate && (
+          <p className={classnames(styles.meta_date)}>{metaDate}</p>
+        )}
         {tags && (
           <div className={classnames(styles.tags)}>
             <FontAwesomeIcon icon={faTag} className={styles.icon} />

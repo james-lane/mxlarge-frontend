@@ -18,26 +18,26 @@ const navigation = [
     name: 'Home',
     route: '/',
   },
-  {
-    name: 'Interviews',
-    route: '/interviews',
-  },
-  {
-    name: 'Galleries',
-    route: '/galleries',
-  },
-  {
-    name: 'Products',
-    route: '/products',
-  },
-  {
-    name: 'Videos',
-    route: '/video',
-  },
-  {
-    name: 'Calendar',
-    route: '/calendar',
-  },
+  // {
+  //   name: 'Interviews',
+  //   route: '/interviews',
+  // },
+  // {
+  //   name: 'Galleries',
+  //   route: '/galleries',
+  // },
+  // {
+  //   name: 'Products',
+  //   route: '/products',
+  // },
+  // {
+  //   name: 'Videos',
+  //   route: '/video',
+  // },
+  // {
+  //   name: 'Calendar',
+  //   route: '/calendar',
+  // },
   {
     name: 'MXGP Live',
     route: 'https://results.mxgp.com/mxgp/livestandings.aspx',
@@ -50,11 +50,11 @@ export const Header = () => {
     <header className={styles.header}>
       <Link href="/">
         <picture>
-          <source srcSet={LogoLight.src} media="(prefers-color-scheme: dark)" />
+          {/* <source srcSet={LogoLight.src} media="(prefers-color-scheme: dark)" /> */}
           <Image
-            src={LogoDark.src}
-            data-src={LogoDark.src}
-            alt="Lazy Load Image"
+            src={LogoLight.src}
+            data-src={LogoLight.src}
+            alt="MXLarge Logo"
             className="lazyload d-inline-block align-top logo"
             width={200}
             height={31}

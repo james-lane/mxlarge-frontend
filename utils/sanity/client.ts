@@ -1,5 +1,5 @@
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
-import { createClient } from 'next-sanity';
+import { QueryParams, createClient } from 'next-sanity';
 import imageUrlBuilder from '@sanity/image-url';
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
@@ -18,3 +18,18 @@ const builder = imageUrlBuilder(client);
 export const urlForImage = (source: SanityImageSource) => {
   return builder.image(source);
 };
+
+export async function sanityFetch<QueryResponse>({
+  query,
+  qParams = {},
+  tags,
+}: {
+  query: string;
+  qParams?: QueryParams;
+  tags: string[];
+}): Promise<QueryResponse> {
+  return client.fetch<QueryResponse>(query, qParams, {
+    cache: process.env.NODE_ENV === 'development' ? 'no-store' : 'force-cache',
+    next: { tags },
+  });
+}

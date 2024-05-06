@@ -18,11 +18,11 @@ export const Footer = () => {
     <footer className={styles.footer}>
       <Link href="/">
         <picture>
-          <source srcSet={LogoLight.src} media="(prefers-color-scheme: dark)" />
+          {/* <source srcSet={LogoLight.src} media="(prefers-color-scheme: dark)" /> */}
           <Image
-            src={LogoDark.src}
-            data-src={LogoDark.src}
-            alt="Lazy Load Image"
+            src={LogoLight.src}
+            data-src={LogoLight.src}
+            alt="MXLarge Logo"
             className="lazyload d-inline-block align-top logo"
             width={200}
             height={31}

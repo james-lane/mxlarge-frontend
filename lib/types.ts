@@ -5,6 +5,7 @@ import { Tag } from './descriptionContainer';
 export type Post = {
   _id: string;
   title?: string;
+  publishedAt?: string;
   slug: {
     current: string;
   };

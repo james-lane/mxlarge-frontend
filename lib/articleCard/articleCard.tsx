@@ -3,12 +3,14 @@ import Link from 'next/link';
 import { SanityAsset } from '@sanity/image-url/lib/types/types';
 import SanityImage from '../sanityImage/SanityImage';
 import classnames from 'classnames';
-import { Description, Tag } from '../descriptionContainer/descriptionContainer';
+import {
+  Description,
+  DescriptionProps,
+  Tag,
+} from '../descriptionContainer/descriptionContainer';
 
-interface ArticleCardProps {
+interface ArticleCardProps extends DescriptionProps {
   link: string;
-  title: string | undefined;
-  tags: Tag[] | null;
   img: SanityAsset;
   className?: string;
 }
@@ -16,6 +18,7 @@ interface ArticleCardProps {
 export const ArticleCard = ({
   link,
   title,
+  publishedDate,
   tags,
   img,
   className,
@@ -32,6 +35,7 @@ export const ArticleCard = ({
       <Description
         title={title}
         tags={tags}
+        publishedDate={publishedDate}
         className={styles.articleDescription}
       />
     </Link>

@@ -14,10 +14,8 @@
   position: relative;
 }
 
-@media (prefers-color-scheme: dark) {
-  .articleDescription {
-    background: var(--color-highlight);
-  }
+.articleDescription {
+  background: var(--color-highlight);
 }
 
 @media screen and (min-width: 768px) {

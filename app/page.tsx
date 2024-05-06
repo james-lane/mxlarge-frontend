@@ -1,47 +1,40 @@
 import styles from './page.module.css';
 import { ArticleCard } from '@/lib/articleCard';
-import { client } from '@/utils/sanity/client';
+import { client, sanityFetch } from '@/utils/sanity/client';
 import Link from 'next/link';
 import SanityImage from '@/lib/sanityImage/SanityImage';
 import { Post, Advert } from '@/lib/types';
+import {
+  billboardAdsQuery,
+  homepageAdsQuery,
+  leaderboardAdsQuery,
+  postQuery,
+} from '@/utils/sanity/query';
 
 export default async function Home() {
-  const posts = await client.fetch<Post[]>(
-    `*[_type == "post"]{
-      _id,
-      title,
-      slug,
-      categories[]->{title},
-      "imageAsset": mainImage.asset
-    }`
-  );
+  const posts: Post[] = await sanityFetch({
+    query: postQuery,
+    // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
+    tags: [],
+  });
 
-  const homepageAds = await client.fetch<Advert[]>(
-    `*[_type == "advert" && advertCategory in ["sidebar", "medium-rectangle"]]{
-        _id,
-        title,
-        url,
-        "imageAsset": image.asset,
-      }`
-  );
+  const homepageAds: Advert[] = await sanityFetch({
+    query: homepageAdsQuery,
+    // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
+    tags: [],
+  });
 
-  const billboardAds = await client.fetch<Advert[]>(
-    `*[_type == "advert" && advertCategory in ["billboard"]]{
-        _id,
-        title,
-        url,
-        "imageAsset": image.asset,
-      }`
-  );
+  const billboardAds: Advert[] = await sanityFetch({
+    query: billboardAdsQuery,
+    // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
+    tags: [],
+  });
 
-  const leaderboardAds = await client.fetch<Advert[]>(
-    `*[_type == "advert" && advertCategory in ["leaderboard"]]{
-        _id,
-        title,
-        url,
-        "imageAsset": image.asset,
-      }`
-  );
+  const leaderboardAds: Advert[] = await sanityFetch({
+    query: leaderboardAdsQuery,
+    // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
+    tags: [],
+  });
 
   const randomHomepageAd = () => {
     return homepageAds[Math.floor(Math.random() * homepageAds.length)];
@@ -79,6 +72,7 @@ export default async function Home() {
                     <ArticleCard
                       link={`news/${post?.slug.current}`}
                       title={post?.title}
+                      publishedDate={post?.publishedAt || null}
                       tags={post?.categories || null}
                       img={post?.imageAsset}
                       className={styles.article}

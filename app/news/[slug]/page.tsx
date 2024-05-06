@@ -2,7 +2,7 @@ import styles from './articlePage.module.css';
 import Image from 'next/image';
 import { Oswald } from 'next/font/google';
 import classNames from 'classnames';
-import { client } from '@/utils/sanity/client';
+import { client, sanityFetch } from '@/utils/sanity/client';
 import { Advert, Post } from '@/lib/types';
 import SanityImage from '@/lib/sanityImage/SanityImage';
 import { PortableText } from '@portabletext/react';
@@ -10,39 +10,33 @@ import { ArticleCard } from '@/lib/articleCard';
 import Link from 'next/link';
 import VideoPlayer from '@/lib/videoPlayer/videoPlayer';
 import { Description } from '@/lib/descriptionContainer';
+import {
+  homepageAdsQuery,
+  similarPostsQuery,
+  singlePostQuery,
+} from '@/utils/sanity/query';
 
 const oswald = Oswald({ subsets: ['latin'] });
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const post = await client.fetch<Post>(
-    `*[_type == "post" && slug.current == "${params.slug}"] | order(_updatedAt desc) [0] {
-      _id,
-      title,
-      slug,
-      categories[]->{title},
-      "imageAsset": mainImage.asset,
-      body
-    }`
-  );
+  const post: Post[] = await sanityFetch({
+    query: singlePostQuery,
+    // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
+    tags: [],
+    qParams: { slug: params.slug },
+  });
 
-  const similarStories = await client.fetch<Post[]>(
-    `*[_type == "post"][0..1]{
-        _id,
-        title,
-        slug,
-        categories[]->{title},
-        "imageAsset": mainImage.asset
-    }`
-  );
+  const similarStories: Post[] = await sanityFetch({
+    query: similarPostsQuery,
+    // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
+    tags: [],
+  });
 
-  const homepageAds = await client.fetch<Advert[]>(
-    `*[_type == "advert" && advertCategory in ["sidebar", "medium-rectangle"]]{
-        _id,
-        title,
-        url,
-        "imageAsset": image.asset,
-      }`
-  );
+  const homepageAds: Advert[] = await sanityFetch({
+    query: homepageAdsQuery,
+    // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
+    tags: [],
+  });
 
   const randomHomepageAd = () => {
     return homepageAds[Math.floor(Math.random() * homepageAds.length)];

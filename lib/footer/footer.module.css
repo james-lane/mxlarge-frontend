@@ -1,10 +1,11 @@
 .footer {
-  background: var(--color-light-darker);
   padding: 3rem 2rem;
   display: grid;
   row-gap: 2rem;
   max-width: 1024px;
   margin: 0 auto;
+  background: var(--color-dark);
+  border-top: 4px solid var(--color-highlight);
 }
 
 .footer a,
@@ -62,12 +63,5 @@
   .footerLinks {
     grid-column: 2;
     grid-row: 1 / span 2;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .footer {
-    background: var(--color-dark);
-    border-top: 4px solid var(--color-highlight);
   }
 }
