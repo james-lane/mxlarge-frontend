@@ -1,4 +1,5 @@
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
 import { Header } from '@/lib/header';
 import './globals.css';
 import type { Metadata } from 'next';
@@ -27,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <SpeedInsights />
+      <Analytics />
       <body className={inter.className}>
         <BackgroundWallpaper />
         <Header />
