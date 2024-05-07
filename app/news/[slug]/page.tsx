@@ -48,7 +48,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
         return <VideoPlayer url={url} />;
       },
       image: ({ value }: any) => {
-        console.log(value);
         return (
           <div className={styles.contentImage}>
             <SanityImage
@@ -87,8 +86,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <div className={styles.clientImg_sidebar}>
           <AdvertComponent
             functionBasedProps={randomHomepageAd}
-            width={728}
-            height={90}
+            width={300}
+            height={600}
             quality={90}
           />
         </div>
