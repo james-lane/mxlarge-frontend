@@ -29,13 +29,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const similarStories: Post[] = await sanityFetch({
     query: similarPostsQuery,
     // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
-    tags: [],
+    tags: ['post'],
   });
 
   const homepageAds: Advert[] = await sanityFetch({
     query: homepageAdsQuery,
     // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
-    tags: [],
+    tags: ['advert'],
   });
 
   const randomHomepageAd = () => {

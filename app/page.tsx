@@ -21,19 +21,19 @@ export default async function Home() {
   const homepageAds: Advert[] = await sanityFetch({
     query: homepageAdsQuery,
     // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
-    tags: [],
+    tags: ['advert'],
   });
 
   const billboardAds: Advert[] = await sanityFetch({
     query: billboardAdsQuery,
     // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
-    tags: [],
+    tags: ['advert'],
   });
 
   const leaderboardAds: Advert[] = await sanityFetch({
     query: leaderboardAdsQuery,
     // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
-    tags: [],
+    tags: ['advert'],
   });
 
   const randomHomepageAd = () => {
