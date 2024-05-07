@@ -1,6 +1,6 @@
 .articleDescription {
   padding: 16px;
-  background: var(--color-highlight);
+  background: #ffffff;
   position: relative;
   z-index: 1;
   word-break: break-word;
@@ -12,13 +12,13 @@
   font-size: 1.6rem;
   margin: 0 0 0.5rem;
   line-height: 2rem;
-  color: var(--color-text);
+  color: var(--color-dark);
 }
 
 .meta {
   width: 100%;
   margin: 0;
-  color: var(--color-text);
+  color: var(--color-dark);
   font-size: 0.8rem;
   display: grid;
   grid-gap: 1rem;
@@ -37,7 +37,7 @@
 
 .tags {
   display: flex;
-  border-left: 1px solid var(--color-text);
+  border-left: 1px solid var(--color-dark);
   padding-left: 1rem;
   grid-row: 1;
 }
