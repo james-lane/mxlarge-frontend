@@ -21,7 +21,7 @@
   display: none;
 }
 
-.clientImg_sidebar_asset {
+.clientImg_sidebar img {
   position: sticky;
   top: 2rem;
 }
