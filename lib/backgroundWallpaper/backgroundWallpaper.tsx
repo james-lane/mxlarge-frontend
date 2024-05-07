@@ -1,9 +1,8 @@
 import { client } from '@/utils/sanity/client';
 import styles from './backgroundWallpaper.module.css';
 import { Advert } from '../types';
-import Link from 'next/link';
-import SanityImage from '../sanityImage/SanityImage';
 import { SanityImageAsset, getImageDimensions } from '@sanity/asset-utils';
+import { AdvertComponent } from '../advert';
 
 export const BackgroundWallpaper = async () => {
   const wallpaperAds = await client.fetch<Advert[]>(
@@ -15,7 +14,7 @@ export const BackgroundWallpaper = async () => {
       }`
   );
 
-  const randomWallpaperAd = () => {
+  const randomWallpaperAd = (): Advert => {
     return wallpaperAds[Math.floor(Math.random() * wallpaperAds.length)];
   };
 
@@ -25,16 +24,13 @@ export const BackgroundWallpaper = async () => {
 
   return (
     <div className={styles.wallpaperContainer}>
-      <Link href={randomWallpaperAd().url}>
-        <SanityImage
-          src={randomWallpaperAd().imageAsset}
-          alt={randomWallpaperAd().title}
-          width={width}
-          height={height}
-          quality={100}
-          priority
-        />
-      </Link>
+      <AdvertComponent
+        functionBasedProps={randomWallpaperAd}
+        width={width}
+        height={height}
+        quality={90}
+        priority
+      />
     </div>
   );
 };

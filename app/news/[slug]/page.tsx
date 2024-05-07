@@ -1,13 +1,11 @@
 import styles from './articlePage.module.css';
-import Image from 'next/image';
 import { Oswald } from 'next/font/google';
 import classNames from 'classnames';
-import { client, sanityFetch } from '@/utils/sanity/client';
+import { sanityFetch } from '@/utils/sanity/client';
 import { Advert, Post } from '@/lib/types';
 import SanityImage from '@/lib/sanityImage/SanityImage';
 import { PortableText } from '@portabletext/react';
 import { ArticleCard } from '@/lib/articleCard';
-import Link from 'next/link';
 import VideoPlayer from '@/lib/videoPlayer/videoPlayer';
 import { Description } from '@/lib/descriptionContainer';
 import {
@@ -15,6 +13,7 @@ import {
   similarPostsQuery,
   singlePostQuery,
 } from '@/utils/sanity/query';
+import { AdvertComponent } from '@/lib/advert';
 
 const oswald = Oswald({ subsets: ['latin'] });
 
@@ -38,7 +37,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     tags: ['advert'],
   });
 
-  const randomHomepageAd = () => {
+  const randomHomepageAd = (): Advert => {
     return homepageAds[Math.floor(Math.random() * homepageAds.length)];
   };
 
@@ -84,28 +83,14 @@ export default async function Page({ params }: { params: { slug: string } }) {
             className={styles.articleDescription}
           />
           <PortableText value={post.body!} components={serializers} />
-          <div className={classNames(styles.clientImg)}>
-            <Image
-              src="/example-ad.gif"
-              alt="Example Ad"
-              width={728}
-              height={90}
-              sizes="100vw"
-            />
-          </div>
         </div>
         <div className={styles.clientImg_sidebar}>
-          <Link href={randomHomepageAd().url}>
-            <SanityImage
-              src={randomHomepageAd().imageAsset}
-              alt={randomHomepageAd().title}
-              width={300}
-              height={600}
-              quality={90}
-              sizes="300px"
-              className={styles.clientImg_sidebar_asset}
-            />
-          </Link>
+          <AdvertComponent
+            functionBasedProps={randomHomepageAd}
+            width={728}
+            height={90}
+            quality={90}
+          />
         </div>
       </div>
       <div className={styles.similarArticles}>

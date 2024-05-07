@@ -1,8 +1,6 @@
 import styles from './page.module.css';
 import { ArticleCard } from '@/lib/articleCard';
-import { client, sanityFetch } from '@/utils/sanity/client';
-import Link from 'next/link';
-import SanityImage from '@/lib/sanityImage/SanityImage';
+import { sanityFetch } from '@/utils/sanity/client';
 import { Post, Advert } from '@/lib/types';
 import {
   billboardAdsQuery,
@@ -10,6 +8,7 @@ import {
   leaderboardAdsQuery,
   postQuery,
 } from '@/utils/sanity/query';
+import { AdvertComponent } from '@/lib/advert';
 
 export default async function Home() {
   const posts: Post[] = await sanityFetch({
@@ -36,15 +35,15 @@ export default async function Home() {
     tags: ['advert'],
   });
 
-  const randomHomepageAd = () => {
+  const randomHomepageAd = (): Advert => {
     return homepageAds[Math.floor(Math.random() * homepageAds.length)];
   };
 
-  const randomBillboardAd = () => {
+  const randomBillboardAd = (): Advert => {
     return billboardAds[Math.floor(Math.random() * billboardAds.length)];
   };
 
-  const randomLeaderboardAd = () => {
+  const randomLeaderboardAd = (): Advert => {
     return leaderboardAds[Math.floor(Math.random() * leaderboardAds.length)];
   };
 
@@ -62,16 +61,12 @@ export default async function Home() {
   return (
     <main>
       <div className={styles.clientImg_billboard}>
-        <Link href={randomBillboardAd().url}>
-          <SanityImage
-            src={randomBillboardAd().imageAsset}
-            alt={randomBillboardAd().title}
-            width={970}
-            height={250}
-            quality={100}
-            priority
-          />
-        </Link>
+        <AdvertComponent
+          functionBasedProps={randomBillboardAd}
+          width={970}
+          height={250}
+          quality={90}
+        />
       </div>
       <div className={styles.page}>
         <div className={styles.articles}>
@@ -92,27 +87,21 @@ export default async function Home() {
                   ))}
                 </div>
                 <div className={styles.clientImg_leaderboard}>
-                  <Link href={randomLeaderboardAd().url}>
-                    <SanityImage
-                      src={randomLeaderboardAd().imageAsset}
-                      alt={randomLeaderboardAd().title}
-                      width={728}
-                      height={90}
-                      quality={90}
-                    />
-                  </Link>
+                  <AdvertComponent
+                    functionBasedProps={randomLeaderboardAd}
+                    width={728}
+                    height={90}
+                    quality={90}
+                  />
                 </div>
                 <div className={styles.clientImg_sidebar}>
-                  <Link href={randomHomepageAd().url}>
-                    <SanityImage
-                      src={randomHomepageAd().imageAsset}
-                      alt={randomHomepageAd().title}
-                      width={300}
-                      height={600}
-                      quality={90}
-                      sizes="300px"
-                    />
-                  </Link>
+                  <AdvertComponent
+                    functionBasedProps={randomHomepageAd}
+                    width={300}
+                    height={600}
+                    quality={90}
+                    sizes="300px"
+                  />
                 </div>
               </div>
             );
