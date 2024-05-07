@@ -48,6 +48,17 @@ export default async function Home() {
     return leaderboardAds[Math.floor(Math.random() * leaderboardAds.length)];
   };
 
+  const chunkSize = 4;
+  const chunkPosts = (posts: Post[]) => {
+    const initialPosts = posts.splice(0, 3);
+    return [
+      initialPosts,
+      ...Array.from({ length: Math.ceil(posts.length / chunkSize) }, (v, i) =>
+        posts.slice(i * chunkSize, i * chunkSize + chunkSize)
+      ),
+    ];
+  };
+
   return (
     <main>
       <div className={styles.clientImg_billboard}>
@@ -64,12 +75,13 @@ export default async function Home() {
       </div>
       <div className={styles.page}>
         <div className={styles.articles}>
-          {posts.map((post: Post, index) => {
-            if (index % 2 === 0) {
-              return (
-                <>
-                  <div key={post._id} className={styles.articleContainer}>
+          {chunkPosts(posts).map((posts: Post[], index: number) => {
+            return (
+              <div className={styles.articleGroup} key={index}>
+                <div className={styles.articleContainer}>
+                  {posts.map((post: Post) => (
                     <ArticleCard
+                      key={post._id}
                       link={`news/${post?.slug.current}`}
                       title={post?.title}
                       publishedDate={post?.publishedAt || null}
@@ -77,47 +89,35 @@ export default async function Home() {
                       img={post?.imageAsset}
                       className={styles.article}
                     />
-                  </div>
-                  <div className={styles.clientImg_leaderboard}>
-                    <Link href={randomLeaderboardAd().url}>
-                      <SanityImage
-                        src={randomLeaderboardAd().imageAsset}
-                        alt={randomLeaderboardAd().title}
-                        width={728}
-                        height={90}
-                        quality={90}
-                      />
-                    </Link>
-                  </div>
-                </>
-              );
-            }
-
-            return (
-              <div key={post._id} className={styles.articleContainer}>
-                <ArticleCard
-                  link={`news/${post?.slug.current}`}
-                  title={post?.title}
-                  publishedDate={post?.publishedAt || null}
-                  tags={post?.categories || null}
-                  img={post?.imageAsset}
-                  className={styles.article}
-                />
+                  ))}
+                </div>
+                <div className={styles.clientImg_leaderboard}>
+                  <Link href={randomLeaderboardAd().url}>
+                    <SanityImage
+                      src={randomLeaderboardAd().imageAsset}
+                      alt={randomLeaderboardAd().title}
+                      width={728}
+                      height={90}
+                      quality={90}
+                    />
+                  </Link>
+                </div>
+                <div className={styles.clientImg_sidebar}>
+                  <Link href={randomHomepageAd().url}>
+                    <SanityImage
+                      src={randomHomepageAd().imageAsset}
+                      alt={randomHomepageAd().title}
+                      width={300}
+                      height={600}
+                      quality={90}
+                      sizes="300px"
+                    />
+                  </Link>
+                </div>
               </div>
             );
           })}
-        </div>
-        <div className={styles.clientImg_sidebar}>
-          <Link href={randomHomepageAd().url}>
-            <SanityImage
-              src={randomHomepageAd().imageAsset}
-              alt={randomHomepageAd().title}
-              width={300}
-              height={600}
-              quality={90}
-              sizes="300px"
-            />
-          </Link>
+          ;
         </div>
       </div>
     </main>

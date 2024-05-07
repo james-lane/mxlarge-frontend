@@ -1,3 +1,17 @@
+.articleGroup {
+  display: grid;
+  gap: 1rem;
+}
+
+.articleGroup [class^="descriptionContainer_articleDescription"] {
+  margin: -1rem 1rem 1rem;
+}
+
+.articleContainer {
+  display: grid;
+  gap: 1rem;
+}
+
 .clientImg_sidebar {
   width: 100%;
   height: 100%;
@@ -7,6 +21,7 @@
 
 .clientImg_leaderboard { 
   padding: 0 24px;
+  margin-bottom: 1rem;
 }
 
 .clientImg_billboard {
@@ -26,6 +41,11 @@
   display: flex;
 }
 
+.clientImg_sidebar {
+  display: none;
+  padding-bottom: 1rem;
+}
+
 .clientImg_sidebar img,
 .clientImg_billboard img,
 .clientImg_leaderboard img {
@@ -34,49 +54,33 @@
   border-radius: 4px;
 }
 
-.articles {
-  list-style: none;
-  padding: 0 0 1.5rem;
-  margin: 0;
-  display: grid;
-  gap: 1.5rem;
-}
-
 @media screen and (min-width: 768px) {
   .page {
     display: grid;
     grid-template-rows: 1fr auto;
   }
 
-  .articles {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    padding: 0 1.5rem 1.5rem;
+  .articleGroup {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: repeat(2, auto);
+    padding: 0 1rem;
   }
 
-  .articleContainer {
-    grid-column: span 4;
+  .clientImg_sidebar {
+    display: initial;
   }
 
-  .articleDescription {
-    width: 100%;
+  .articleGroup [class^="descriptionContainer_articleDescription"] {
+    margin: auto;
   }
 
-  .articleContainer:nth-child(1) {
-    grid-column: 1 / span 4;
-  }
-
-  .articleContainer:nth-child(1) [class^="articleCard"] {
-    grid-template-rows: 400px auto;
-  }
-
-  .articleContainer:nth-child(2) {
+  .articleGroup:nth-child(1) [class^="articleCard"]:nth-child(1) {
     grid-column: 1 / span 2;
+    grid-template-rows: 400px auto;
   }
   
   .clientImg_sidebar {
     grid-column: 2;
-    grid-row: 1;
-    padding: 0 1.5rem 1.5rem 0;
   }
 
   .clientImg_sidebar img {
@@ -89,11 +93,18 @@
     display: flex;
     justify-content: center;
     padding: 0;
+    grid-column: 1;
+    align-self: flex-start;
   }
-}
 
-@media screen and (min-width: 1024px) {
   .articleContainer {
-    grid-column: span 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .clientImg_sidebar {
+    grid-column: 2;
+    grid-row: 1 / span 2;
   }
 }

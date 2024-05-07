@@ -1,9 +1,15 @@
 .wallpaperContainer {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  z-index: -1;
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .wallpaperContainer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: -1;
+  }
 }
