@@ -39,7 +39,7 @@ export const Footer = () => {
         </Link>
       </div>
       <div className={styles.footerLinks}>
-        <Link href="/" className={styles.footerLink}>
+        {/* <Link href="/" className={styles.footerLink}>
           About
         </Link>
         <Link href="/" className={styles.footerLink}>
@@ -50,7 +50,7 @@ export const Footer = () => {
         </Link>
         <Link href="/" className={styles.footerLink}>
           Contact us
-        </Link>
+        </Link> */}
       </div>
       <small className={classNames(inter.className, styles.copyrightText)}>
         Copyright © MX Large {new Date().getFullYear()}

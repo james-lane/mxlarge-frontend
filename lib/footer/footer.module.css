@@ -57,7 +57,7 @@
     grid-template-columns: auto 1fr;
     grid-template-rows: repeat(3, auto);
     column-gap: 5rem;
-    row-gap: 0;
+    row-gap: 1rem;
   }
 
   .footerLinks {
