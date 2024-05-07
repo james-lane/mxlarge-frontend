@@ -2,8 +2,8 @@
 const nextConfig = {
   images: {
     domains: ['cdn.sanity.io'],
-    deviceSizes: [414, 828],
-    imageSizes: [],
+    deviceSizes: [430, 768, 1024],
+    imageSizes: [430, 676, 1024],
   },
 };
 
