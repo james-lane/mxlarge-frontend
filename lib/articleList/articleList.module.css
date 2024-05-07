@@ -23,6 +23,7 @@
 
 .articleListTitle {
   font-size: 1.4rem;
+  line-height: 2rem;
   color: var(--color-light);
   font-weight: normal;
   padding: 16px 16px 0;
