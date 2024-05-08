@@ -10,6 +10,7 @@ import { Footer } from '@/lib/footer';
 import styles from './layout.module.css';
 import { BackgroundWallpaper } from '@/lib/backgroundWallpaper';
 import { NewSitePopup } from '@/lib/newSitePopup';
+import { Suspense } from 'react';
 config.autoAddCss = false;
 
 export const runtime = 'edge';
@@ -37,7 +38,9 @@ export default function RootLayout({
           <div className={styles.content}>{children}</div>
         </div>
         <Footer />
-        <NewSitePopup />
+        <Suspense>
+          <NewSitePopup />
+        </Suspense>
       </body>
     </html>
   );
