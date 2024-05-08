@@ -8,7 +8,6 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        // ?p=news%2Fcornelius-t%C3%B8ndel-interview-leatt-rider'
         source: '/index.php',
         destination: '/',
         permanent: true,

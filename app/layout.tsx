@@ -9,6 +9,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { Footer } from '@/lib/footer';
 import styles from './layout.module.css';
 import { BackgroundWallpaper } from '@/lib/backgroundWallpaper';
+import { NewSitePopup } from '@/lib/newSitePopup';
 config.autoAddCss = false;
 
 export const runtime = 'edge';
@@ -36,6 +37,7 @@ export default function RootLayout({
           <div className={styles.content}>{children}</div>
         </div>
         <Footer />
+        <NewSitePopup />
       </body>
     </html>
   );
