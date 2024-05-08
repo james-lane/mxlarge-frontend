@@ -69,30 +69,47 @@ export default async function Home() {
         />
       </div>
       <div className={styles.page}>
-        <div className={styles.articles}>
-          {chunkPosts(posts).map((posts: Post[], index: number) => {
+        {chunkPosts(posts).map((posts: Post[], index: number) => {
+          if (index === 0) {
             return (
               <div className={styles.articleGroup} key={index}>
                 <div className={styles.articleContainer}>
-                  {posts.map((post: Post) => (
-                    <ArticleCard
-                      key={post._id}
-                      link={`news/${post?.slug.current}`}
-                      title={post?.title}
-                      publishedDate={post?.publishedAt || null}
-                      tags={post?.categories || null}
-                      img={post?.imageAsset}
-                      className={styles.article}
-                    />
-                  ))}
-                </div>
-                <div className={styles.clientImg_leaderboard}>
-                  <AdvertComponent
-                    functionBasedProps={randomLeaderboardAd}
-                    width={728}
-                    height={90}
-                    quality={90}
-                  />
+                  {posts.map((post: Post, index: number) => {
+                    if (index % 2 === 0) {
+                      return (
+                        <>
+                          <ArticleCard
+                            key={post._id}
+                            link={`news/${post?.slug.current}`}
+                            title={post?.title}
+                            publishedDate={post?.publishedAt || null}
+                            tags={post?.categories || null}
+                            img={post?.imageAsset}
+                            className={styles.article}
+                          />
+                          <div className={styles.clientImg_leaderboard}>
+                            <AdvertComponent
+                              functionBasedProps={randomLeaderboardAd}
+                              width={728}
+                              height={90}
+                              quality={90}
+                            />
+                          </div>
+                        </>
+                      );
+                    }
+                    return (
+                      <ArticleCard
+                        key={post._id}
+                        link={`news/${post?.slug.current}`}
+                        title={post?.title}
+                        publishedDate={post?.publishedAt || null}
+                        tags={post?.categories || null}
+                        img={post?.imageAsset}
+                        className={styles.article}
+                      />
+                    );
+                  })}
                 </div>
                 <div className={styles.clientImg_sidebar}>
                   <AdvertComponent
@@ -105,9 +122,61 @@ export default async function Home() {
                 </div>
               </div>
             );
-          })}
-          ;
-        </div>
+          }
+
+          return (
+            <div className={styles.articleGroup} key={index}>
+              <div className={styles.articleContainer}>
+                {posts.map((post: Post, index: number) => {
+                  if (index === 1 || index === 3) {
+                    return (
+                      <>
+                        <ArticleCard
+                          key={post._id}
+                          link={`news/${post?.slug.current}`}
+                          title={post?.title}
+                          publishedDate={post?.publishedAt || null}
+                          tags={post?.categories || null}
+                          img={post?.imageAsset}
+                          className={styles.article}
+                        />
+                        <div className={styles.clientImg_leaderboard}>
+                          <AdvertComponent
+                            functionBasedProps={randomLeaderboardAd}
+                            width={728}
+                            height={90}
+                            quality={90}
+                          />
+                        </div>
+                      </>
+                    );
+                  }
+
+                  return (
+                    <ArticleCard
+                      key={post._id}
+                      link={`news/${post?.slug.current}`}
+                      title={post?.title}
+                      publishedDate={post?.publishedAt || null}
+                      tags={post?.categories || null}
+                      img={post?.imageAsset}
+                      className={styles.article}
+                    />
+                  );
+                })}
+              </div>
+              <div className={styles.clientImg_sidebar}>
+                <AdvertComponent
+                  functionBasedProps={randomHomepageAd}
+                  width={300}
+                  height={600}
+                  quality={90}
+                  sizes="300px"
+                />
+              </div>
+            </div>
+          );
+        })}
       </div>
     </main>
   );
