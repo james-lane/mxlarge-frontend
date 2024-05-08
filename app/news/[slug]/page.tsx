@@ -14,6 +14,7 @@ import {
   singlePostQuery,
 } from '@/utils/sanity/query';
 import { AdvertComponent } from '@/lib/advert';
+import { notFound } from 'next/navigation';
 
 const oswald = Oswald({ subsets: ['latin'] });
 
@@ -62,6 +63,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
       },
     },
   };
+
+  if (!post) notFound();
 
   return (
     <main className={styles.article}>
