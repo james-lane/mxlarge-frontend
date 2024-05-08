@@ -29,6 +29,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     query: similarPostsQuery,
     // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
     tags: ['post'],
+    qParams: { slug: params.slug },
   });
 
   const homepageAds: Advert[] = await sanityFetch({

@@ -32,7 +32,7 @@ export const postQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) &
   "imageAsset": mainImage.asset
 }`;
 
-export const similarPostsQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null)][0..1]{
+export const similarPostsQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null) && !(slug.current == $slug)] | order(publishedAt desc)[0..1]{
   _id,
   title,
   publishedAt,
