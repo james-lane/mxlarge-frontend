@@ -1,5 +1,4 @@
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Analytics } from '@vercel/analytics/react';
 import { Header } from '@/lib/header';
 import './globals.css';
 import type { Metadata } from 'next';
@@ -11,6 +10,7 @@ import styles from './layout.module.css';
 import { BackgroundWallpaper } from '@/lib/backgroundWallpaper';
 import { NewSitePopup } from '@/lib/newSitePopup';
 import { Suspense } from 'react';
+import { GoogleAnalytics } from '@next/third-parties/google';
 config.autoAddCss = false;
 
 export const runtime = 'edge';
@@ -30,7 +30,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <SpeedInsights />
-      <Analytics />
       <body className={inter.className}>
         <BackgroundWallpaper />
         <Header />
@@ -41,6 +40,7 @@ export default function RootLayout({
         <Suspense>
           <NewSitePopup />
         </Suspense>
+        <GoogleAnalytics gaId="G-D85QCRQGHH" />
       </body>
     </html>
   );
