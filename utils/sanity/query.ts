@@ -35,6 +35,7 @@ export const postQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) &
 export const similarPostsQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null)][0..1]{
   _id,
   title,
+  publishedAt,
   slug,
   categories[]->{title},
   "imageAsset": mainImage.asset
