@@ -6,7 +6,7 @@
 .articleDescription {
   padding: 16px;
   margin: -86px 0 0;
-  background: var(--color-highlight);
+  background: #ffffff;
   position: relative;
   z-index: 1;
 }
@@ -54,7 +54,7 @@
 }
 
 .similarArticles {
-  background: var(--color-highlight);
+  background: #ffffff;
   display: grid;
   gap: 2rem;
   padding: 2rem;
