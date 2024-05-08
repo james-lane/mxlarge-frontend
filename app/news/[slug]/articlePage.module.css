@@ -54,7 +54,7 @@
 }
 
 .similarArticles {
-  background: #ffffff;
+  background: var(--color-highlight);
   display: grid;
   gap: 2rem;
   padding: 2rem;
