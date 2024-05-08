@@ -32,6 +32,15 @@ export const postQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) &
   "imageAsset": mainImage.asset
 }`;
 
+export const categoryQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null) && (count((categories[]->slug.current)[@ in [$category]]) > 0)] | order(publishedAt desc){
+  _id,
+  title,
+  publishedAt,
+  slug,
+  categories[]->{title},
+  "imageAsset": mainImage.asset
+}`;
+
 export const similarPostsQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null) && !(slug.current == $slug)] | order(publishedAt desc)[0..1]{
   _id,
   title,

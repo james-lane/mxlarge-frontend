@@ -3,13 +3,14 @@ import styles from './header.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import LogoLight from '../../public/mxlarge-logo-light.svg';
-import LogoDark from '../../public/mxlarge-logo-dark.svg';
+// import LogoDark from '../../public/mxlarge-logo-dark.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/sharp-regular-svg-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Oswald } from 'next/font/google';
 import classNames from 'classnames';
+import { usePathname, useRouter } from 'next/navigation';
 
 const oswald = Oswald({ subsets: ['latin'] });
 
@@ -18,10 +19,14 @@ const navigation = [
     name: 'Home',
     route: '/',
   },
-  // {
-  //   name: 'Interviews',
-  //   route: '/interviews',
-  // },
+  {
+    name: 'Videos',
+    route: '/videos',
+  },
+  {
+    name: 'Interviews',
+    route: '/interviews',
+  },
   // {
   //   name: 'Galleries',
   //   route: '/galleries',
@@ -29,10 +34,6 @@ const navigation = [
   // {
   //   name: 'Products',
   //   route: '/products',
-  // },
-  // {
-  //   name: 'Videos',
-  //   route: '/video',
   // },
   // {
   //   name: 'Calendar',
@@ -46,6 +47,11 @@ const navigation = [
 
 export const Header = () => {
   const [navOpen, setNavOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => setNavOpen(false), [pathname]);
+
   return (
     <header className={styles.header}>
       <Link href="/">
@@ -77,7 +83,7 @@ export const Header = () => {
           ></div>
           <nav className={classNames(oswald.className, styles.nav)}>
             {navigation.map(({ name, route }, i) => (
-              <Link key={i} href={route}>
+              <Link key={i} href={route} onClick={() => router.push(route)}>
                 {name}
               </Link>
             ))}
