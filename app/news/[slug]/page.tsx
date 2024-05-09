@@ -71,8 +71,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <div className={styles.imageContainer}>
         <SanityImage
           src={post.imageAsset}
-          alt="Lazy Load Image"
+          alt={post.title || 'Story hero image'}
           className={styles.image}
+          quality={100}
           priority
           fill
         />
