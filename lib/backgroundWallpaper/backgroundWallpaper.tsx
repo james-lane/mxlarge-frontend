@@ -28,8 +28,7 @@ export const BackgroundWallpaper = async () => {
         functionBasedProps={randomWallpaperAd}
         width={width}
         height={height}
-        quality={90}
-        priority
+        style={{ maxWidth: 'initial', borderRadius: 0 }}
       />
     </div>
   );

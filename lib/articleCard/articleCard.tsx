@@ -27,9 +27,9 @@ export const ArticleCard = ({
     <Link href={link} className={classnames(styles.articleCard, className)}>
       <SanityImage
         src={img}
-        alt="Lazy Load Image"
+        alt={`${title} image`}
         className={styles.image}
-        priority
+        sizes={'(min-width: 768px) 25vw, 80vw'}
         fill
       />
       <Description

@@ -1,35 +1,41 @@
 import Link from 'next/link';
-import SanityImage from '../sanityImage/SanityImage';
 import { Advert } from '../types';
+import Image from 'next/image';
+import { urlForImage } from '@/utils/sanity/client';
+import styles from './advert.module.css';
 
 export interface AdvertProps {
   functionBasedProps: () => Advert;
   width: number;
   height: number;
-  quality: number;
+  quality?: number;
   sizes?: string;
   priority?: boolean;
+  style?: React.CSSProperties;
 }
 
 export const AdvertComponent = ({
   functionBasedProps,
   width,
   height,
-  quality,
-  sizes,
-  priority,
+  style,
 }: AdvertProps) => {
   const { url, imageAsset, title } = functionBasedProps();
   return (
     <Link href={url}>
-      <SanityImage
-        src={imageAsset}
+      <Image
+        className={styles.advert}
+        src={urlForImage(imageAsset)
+          .width(width)
+          .quality(50)
+          .fit('clip')
+          .auto('format')
+          .url()}
         alt={title}
         width={width}
         height={height}
-        quality={quality}
-        sizes={sizes}
-        priority={priority}
+        unoptimized
+        style={style}
       />
     </Link>
   );

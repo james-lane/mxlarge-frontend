@@ -9,6 +9,7 @@ import {
   postQuery,
 } from '@/utils/sanity/query';
 import { AdvertComponent } from '@/lib/advert';
+import classnames from 'classnames';
 
 export default async function Home() {
   const posts: Post[] = await sanityFetch({
@@ -65,7 +66,6 @@ export default async function Home() {
           functionBasedProps={randomBillboardAd}
           width={970}
           height={250}
-          quality={90}
         />
       </div>
       <div className={styles.page}>
@@ -85,14 +85,16 @@ export default async function Home() {
                             publishedDate={post?.publishedAt || null}
                             tags={post?.categories || null}
                             img={post?.imageAsset}
-                            className={styles.article}
+                            className={classnames(
+                              styles.article,
+                              index === 0 && styles.heroArticle
+                            )}
                           />
                           <div className={styles.clientImg_leaderboard}>
                             <AdvertComponent
                               functionBasedProps={randomLeaderboardAd}
                               width={728}
                               height={90}
-                              quality={90}
                             />
                           </div>
                         </>
@@ -116,8 +118,6 @@ export default async function Home() {
                     functionBasedProps={randomHomepageAd}
                     width={300}
                     height={600}
-                    quality={90}
-                    sizes="300px"
                   />
                 </div>
               </div>
@@ -145,7 +145,6 @@ export default async function Home() {
                             functionBasedProps={randomLeaderboardAd}
                             width={728}
                             height={90}
-                            quality={90}
                           />
                         </div>
                       </>
@@ -170,8 +169,6 @@ export default async function Home() {
                   functionBasedProps={randomHomepageAd}
                   width={300}
                   height={600}
-                  quality={90}
-                  sizes="300px"
                 />
               </div>
             </div>

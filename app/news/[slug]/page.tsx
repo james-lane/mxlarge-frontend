@@ -15,6 +15,7 @@ import {
 } from '@/utils/sanity/query';
 import { AdvertComponent } from '@/lib/advert';
 import { notFound } from 'next/navigation';
+import { getImageDimensions } from '@sanity/asset-utils';
 
 const oswald = Oswald({ subsets: ['latin'] });
 
@@ -50,15 +51,21 @@ export default async function Page({ params }: { params: { slug: string } }) {
         return <VideoPlayer url={url} />;
       },
       image: ({ value }: any) => {
+        const { height } = getImageDimensions(value.asset);
+
         return (
-          <div className={styles.contentImage}>
-            <SanityImage
-              src={value.asset}
-              alt={'alt'}
-              className={styles.image}
-              fill
-            />
-          </div>
+          <SanityImage
+            src={value.asset}
+            alt={value.title}
+            width={596}
+            height={height}
+            style={{
+              width: '100%',
+              height: 'auto',
+            }}
+            sizes={'(min-width: 768px) 392px, (min-width: 1024px) 596px, 100vw'}
+            className={styles.contentImage}
+          />
         );
       },
     },
@@ -73,7 +80,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
           src={post.imageAsset}
           alt={post.title || 'Story hero image'}
           className={styles.image}
-          quality={80}
           priority
           fill
         />
@@ -93,7 +99,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
             functionBasedProps={randomHomepageAd}
             width={300}
             height={600}
-            quality={90}
           />
         </div>
       </div>

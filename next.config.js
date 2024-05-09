@@ -2,8 +2,8 @@
 const nextConfig = {
   images: {
     domains: ['cdn.sanity.io'],
-    deviceSizes: [430, 768, 1024],
-    imageSizes: [430, 676, 1024],
+    deviceSizes: [768, 1024].flatMap((size) => [size, size * 2]),
+    imageSizes: [330, 640],
   },
   async redirects() {
     return [
