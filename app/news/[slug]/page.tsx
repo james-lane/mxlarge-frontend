@@ -73,7 +73,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           src={post.imageAsset}
           alt={post.title || 'Story hero image'}
           className={styles.image}
-          quality={100}
+          quality={80}
           priority
           fill
         />
