@@ -32,10 +32,6 @@
   max-width: calc(100vw - 3rem);
 }
 
-.clientImg_billboard img {
-  max-width: calc(100vw - 3rem);
-}
-
 .clientImg_leaderboard [class^="sanityImage"], 
 .clientImg_billboard [class^="sanityImage"] { 
   display: flex;
@@ -44,14 +40,6 @@
 .clientImg_sidebar {
   display: none;
   padding-bottom: 1rem;
-}
-
-.clientImg_sidebar img,
-.clientImg_billboard img,
-.clientImg_leaderboard img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px;
 }
 
 @media screen and (min-width: 768px) {
@@ -74,7 +62,7 @@
     margin: auto;
   }
 
-  .articleGroup:nth-child(1) [class^="articleCard"]:nth-child(1) {
+  .heroArticle {
     grid-column: 1 / span 2;
     grid-template-rows: 380px auto;
   }
