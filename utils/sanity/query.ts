@@ -23,7 +23,7 @@ export const singlePostQuery = groq`*[_type == "post" && slug.current == $slug &
   body
 }`;
 
-export const postQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null)] | order(publishedAt desc){
+export const postQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null)] | order(publishedAt desc) [0..26]{
   _id,
   title,
   publishedAt,
@@ -32,7 +32,7 @@ export const postQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) &
   "imageAsset": mainImage.asset
 }`;
 
-export const categoryQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null) && (count((categories[]->slug.current)[@ in [$category]]) > 0)] | order(publishedAt desc){
+export const categoryQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null) && (count((categories[]->slug.current)[@ in [$category]]) > 0)] | order(publishedAt desc) [0..26]{
   _id,
   title,
   publishedAt,
