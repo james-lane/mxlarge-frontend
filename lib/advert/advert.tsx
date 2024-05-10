@@ -22,7 +22,7 @@ export const AdvertComponent = ({
 }: AdvertProps) => {
   const { url, imageAsset, title } = functionBasedProps();
   return (
-    <Link href={url}>
+    <Link href={url} target="_blank">
       <Image
         className={styles.advert}
         src={urlForImage(imageAsset)
