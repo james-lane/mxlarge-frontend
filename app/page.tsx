@@ -2,12 +2,7 @@ import styles from './page.module.css';
 import { ArticleCard } from '@/lib/articleCard';
 import { sanityFetch } from '@/utils/sanity/client';
 import { Post, Advert } from '@/lib/types';
-import {
-  billboardAdsQuery,
-  homepageAdsQuery,
-  leaderboardAdsQuery,
-  postQuery,
-} from '@/utils/sanity/query';
+import { adsQuery, postQuery } from '@/utils/sanity/query';
 import { AdvertComponent } from '@/lib/advert';
 import classnames from 'classnames';
 
@@ -18,23 +13,25 @@ export default async function Home() {
     tags: ['post'],
   });
 
-  const homepageAds: Advert[] = await sanityFetch({
-    query: homepageAdsQuery,
+  const allAds: Advert[] = await sanityFetch({
+    query: adsQuery,
     // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
     tags: ['advert'],
   });
 
-  const billboardAds: Advert[] = await sanityFetch({
-    query: billboardAdsQuery,
-    // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
-    tags: ['advert'],
-  });
+  const homepageAds: Advert[] = allAds.filter(
+    (ad) =>
+      ad.advertCategory === 'sidebar' ||
+      ad.advertCategory === 'medium-rectangle'
+  );
 
-  const leaderboardAds: Advert[] = await sanityFetch({
-    query: leaderboardAdsQuery,
-    // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
-    tags: ['advert'],
-  });
+  const billboardAds: Advert[] = allAds.filter(
+    (ad) => ad.advertCategory === 'billboard'
+  );
+
+  const leaderboardAds: Advert[] = allAds.filter(
+    (ad) => ad.advertCategory === 'leaderboard'
+  );
 
   const randomHomepageAd = (): Advert => {
     return homepageAds[Math.floor(Math.random() * homepageAds.length)];

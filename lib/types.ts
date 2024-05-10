@@ -17,6 +17,7 @@ export type Post = {
 export type Advert = {
   _id: string;
   title: string;
+  advertCategory: string;
   url: string;
   imageAsset: SanityAsset;
 };

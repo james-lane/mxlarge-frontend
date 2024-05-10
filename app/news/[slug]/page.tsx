@@ -9,7 +9,7 @@ import { ArticleCard } from '@/lib/articleCard';
 import VideoPlayer from '@/lib/videoPlayer/videoPlayer';
 import { Description } from '@/lib/descriptionContainer';
 import {
-  homepageAdsQuery,
+  adsQuery,
   similarPostsQuery,
   singlePostQuery,
 } from '@/utils/sanity/query';
@@ -34,11 +34,17 @@ export default async function Page({ params }: { params: { slug: string } }) {
     qParams: { slug: params.slug },
   });
 
-  const homepageAds: Advert[] = await sanityFetch({
-    query: homepageAdsQuery,
+  const allAds: Advert[] = await sanityFetch({
+    query: adsQuery,
     // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
     tags: ['advert'],
   });
+
+  const homepageAds: Advert[] = allAds.filter(
+    (ad) =>
+      ad.advertCategory === 'sidebar' ||
+      ad.advertCategory === 'medium-rectangle'
+  );
 
   const randomHomepageAd = (): Advert => {
     return homepageAds[Math.floor(Math.random() * homepageAds.length)];

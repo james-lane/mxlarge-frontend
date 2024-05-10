@@ -1,18 +1,5 @@
 import { groq } from 'next-sanity';
 
-// export const postQuery = groq`*[_type == "post"] {
-//   _id,
-//   _createdAt,
-//   title,
-//   "slug": slug.current,
-//   cover {
-//     "image": asset->url,
-//     "lqip": asset->metadata.lqip,
-//     alt,
-//   },
-//   content,
-// }`;
-
 export const singlePostQuery = groq`*[_type == "post" && slug.current == $slug && !(_id in path('drafts.**')) && !(slug == null)] | order(_updatedAt desc) [0] {
   _id,
   title,
@@ -50,23 +37,10 @@ export const similarPostsQuery = groq`*[_type == "post" && !(_id in path('drafts
   "imageAsset": mainImage.asset
 }`;
 
-export const homepageAdsQuery = groq`*[_type == "advert" && advertCategory in ["sidebar", "medium-rectangle"]]{
+export const adsQuery = groq`*[_type == "advert"]{
   _id,
   title,
-  url,
-  "imageAsset": image.asset,
-}`;
-
-export const billboardAdsQuery = groq`*[_type == "advert" && advertCategory in ["billboard"]]{
-  _id,
-  title,
-  url,
-  "imageAsset": image.asset,
-}`;
-
-export const leaderboardAdsQuery = groq`*[_type == "advert" && advertCategory in ["leaderboard"]]{
-  _id,
-  title,
+  advertCategory,
   url,
   "imageAsset": image.asset,
 }`;
