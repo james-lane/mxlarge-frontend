@@ -1,17 +1,19 @@
-import { client } from '@/utils/sanity/client';
+import { client, sanityFetch } from '@/utils/sanity/client';
 import styles from './backgroundWallpaper.module.css';
 import { Advert } from '../types';
 import { SanityImageAsset, getImageDimensions } from '@sanity/asset-utils';
 import { AdvertComponent } from '../advert';
+import { adsQuery } from '@/utils/sanity/query';
 
 export const BackgroundWallpaper = async () => {
-  const wallpaperAds = await client.fetch<Advert[]>(
-    `*[_type == "advert" && advertCategory in ["wallpaper"]]{
-        _id,
-        title,
-        url,
-        "imageAsset": image.asset,
-      }`
+  const allAds: Advert[] = await sanityFetch({
+    query: adsQuery,
+    // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
+    tags: ['advert'],
+  });
+
+  const wallpaperAds: Advert[] = allAds.filter(
+    (ad) => ad.advertCategory === 'wallpaper'
   );
 
   const randomWallpaperAd = (): Advert => {
