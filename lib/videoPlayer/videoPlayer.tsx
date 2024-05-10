@@ -16,7 +16,12 @@ export default function VideoPlayer({ url }: { [key: string]: string }) {
   return (
     <div className={styles.videoPlayer}>
       {hasWindow && (
-        <ReactPlayer url={url} width={'auto'} style={{ minWidth: '100%' }} />
+        <ReactPlayer
+          url={url}
+          width={'auto'}
+          style={{ minWidth: '100%' }}
+          controls
+        />
       )}
     </div>
   );
