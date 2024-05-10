@@ -33,16 +33,27 @@ export default async function Home() {
     (ad) => ad.advertCategory === 'leaderboard'
   );
 
+  let chosenAd: Advert;
+
+  const getRandomExceptCurrentAd = (adArray: Advert[]) => {
+    const randomAd = adArray[Math.floor(Math.random() * adArray.length)];
+
+    chosenAd =
+      randomAd === chosenAd ? getRandomExceptCurrentAd(adArray) : randomAd;
+
+    return chosenAd;
+  };
+
   const randomHomepageAd = (): Advert => {
-    return homepageAds[Math.floor(Math.random() * homepageAds.length)];
+    return getRandomExceptCurrentAd(homepageAds);
   };
 
   const randomBillboardAd = (): Advert => {
-    return billboardAds[Math.floor(Math.random() * billboardAds.length)];
+    return getRandomExceptCurrentAd(billboardAds);
   };
 
   const randomLeaderboardAd = (): Advert => {
-    return leaderboardAds[Math.floor(Math.random() * leaderboardAds.length)];
+    return getRandomExceptCurrentAd(leaderboardAds);
   };
 
   const chunkSize = 4;
