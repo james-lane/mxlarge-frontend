@@ -1,4 +1,3 @@
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Header } from '@/lib/header';
 import './globals.css';
 import type { Metadata } from 'next';
@@ -29,7 +28,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <SpeedInsights />
       <body className={inter.className}>
         <BackgroundWallpaper />
         <Header />
