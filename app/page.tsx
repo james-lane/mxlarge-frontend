@@ -97,6 +97,7 @@ export default async function Home() {
                               styles.article,
                               index === 0 && styles.heroArticle
                             )}
+                            size="large"
                           />
                           <div className={styles.clientImg_leaderboard}>
                             <AdvertComponent

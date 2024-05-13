@@ -84,10 +84,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <div className={styles.imageContainer}>
         <SanityImage
           src={post.imageAsset}
+          width={1024}
+          height={480}
           alt={post.title || 'Story hero image'}
           className={styles.image}
           priority
-          fill
         />
       </div>
       <div className={styles.articleBody}>
@@ -123,6 +124,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
               publishedDate={story?.publishedAt || null}
               tags={story?.categories || null}
               img={story?.imageAsset}
+              className={styles.similarArticle}
             />
           ))}
       </div>

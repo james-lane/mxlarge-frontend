@@ -8,7 +8,7 @@ import classnames from 'classnames';
 type Props = Omit<ImageProps, 'src'> & {
   src: SanityImageSource;
   width: number;
-  quality: number;
+  quality?: number;
   advert?: boolean;
 };
 
@@ -28,7 +28,7 @@ export default function SanityImage({ src, alt, ...props }: Props) {
       <Image
         src={urlForImage(src)
           .width(props.width)
-          .quality(props.quality)
+          .quality(props.quality || 40)
           .auto('format')
           .url()}
         alt={alt}

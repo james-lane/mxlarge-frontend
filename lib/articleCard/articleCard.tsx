@@ -13,6 +13,7 @@ interface ArticleCardProps extends DescriptionProps {
   link: string;
   img: SanityAsset;
   className?: string;
+  size?: 'large';
 }
 
 export const ArticleCard = ({
@@ -22,16 +23,28 @@ export const ArticleCard = ({
   tags,
   img,
   className,
+  size,
 }: ArticleCardProps) => {
   return (
     <Link href={link} className={classnames(styles.articleCard, className)}>
-      <SanityImage
-        src={img}
-        alt={`${title} image`}
-        className={styles.image}
-        sizes={'(min-width: 768px) 25vw, 80vw'}
-        fill
-      />
+      {size ? (
+        <SanityImage
+          src={img}
+          alt={`${title} image`}
+          className={styles.image}
+          width={676}
+          height={380}
+        />
+      ) : (
+        <SanityImage
+          src={img}
+          alt={`${title} image`}
+          className={styles.image}
+          sizes={'(min-width: 768px) 25vw, 80vw'}
+          width={430}
+          height={242}
+        />
+      )}
       <Description
         title={title}
         tags={tags}
