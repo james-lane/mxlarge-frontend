@@ -7,6 +7,8 @@ import classnames from 'classnames';
 
 type Props = Omit<ImageProps, 'src'> & {
   src: SanityImageSource;
+  width: number;
+  quality: number;
   advert?: boolean;
 };
 
@@ -24,12 +26,13 @@ export default function SanityImage({ src, alt, ...props }: Props) {
   return (
     <div className={classnames(props.className)}>
       <Image
-        src="Fake src to avoid error"
+        src={urlForImage(src)
+          .width(props.width)
+          .quality(props.quality)
+          .auto('format')
+          .url()}
         alt={alt}
         blurDataURL={base64ImageUrl}
-        loader={({ width, quality = 50 }) =>
-          urlForImage(src).width(width).quality(quality).auto('format').url()
-        }
         {...props}
       />
     </div>
