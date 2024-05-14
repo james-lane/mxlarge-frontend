@@ -40,7 +40,6 @@ export const ArticleCard = ({
           src={img}
           alt={`${title} image`}
           className={styles.image}
-          sizes={'(min-width: 768px) 25vw, 80vw'}
           width={430}
           height={242}
         />

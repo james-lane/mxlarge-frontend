@@ -26,11 +26,7 @@ export default function SanityImage({ src, alt, ...props }: Props) {
   return (
     <div className={classnames(props.className)}>
       <Image
-        src={urlForImage(src)
-          .width(props.width)
-          .quality(props.quality || 40)
-          .auto('format')
-          .url()}
+        src={urlForImage(src).url()}
         alt={alt}
         blurDataURL={base64ImageUrl}
         {...props}
