@@ -12,7 +12,7 @@ import { Suspense } from 'react';
 import { GoogleAnalytics } from '@next/third-parties/google';
 config.autoAddCss = false;
 
-export const runtime = 'nodejs'; // was edge
+export const runtime = 'edge';
 
 const inter = Inter({ subsets: ['latin'] });
 
