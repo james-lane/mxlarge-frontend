@@ -16,6 +16,7 @@ import {
 import { AdvertComponent } from '@/lib/advert';
 import { notFound } from 'next/navigation';
 import { getImageDimensions } from '@sanity/asset-utils';
+import classnames from 'classnames';
 
 const oswald = Oswald({ subsets: ['latin'] });
 
@@ -46,8 +47,16 @@ export default async function Page({ params }: { params: { slug: string } }) {
       ad.advertCategory === 'medium-rectangle'
   );
 
+  const leaderboardAds: Advert[] = allAds.filter(
+    (ad) => ad.advertCategory === 'leaderboard'
+  );
+
   const randomHomepageAd = (): Advert => {
     return homepageAds[Math.floor(Math.random() * homepageAds.length)];
+  };
+
+  const randomLeaderboardAd = (): Advert => {
+    return leaderboardAds[Math.floor(Math.random() * leaderboardAds.length)];
   };
 
   const serializers = {
@@ -99,7 +108,21 @@ export default async function Page({ params }: { params: { slug: string } }) {
             tags={post.categories || null}
             className={styles.articleDescription}
           />
+          <div className={styles.clientImg_leaderboard}>
+            <AdvertComponent
+              functionBasedProps={randomLeaderboardAd}
+              width={728}
+              height={90}
+            />
+          </div>
           <PortableText value={post.body!} components={serializers} />
+          <div className={styles.clientImg_leaderboard}>
+            <AdvertComponent
+              functionBasedProps={randomLeaderboardAd}
+              width={728}
+              height={90}
+            />
+          </div>
         </div>
         <div className={styles.clientImg_sidebar}>
           <AdvertComponent
@@ -127,6 +150,18 @@ export default async function Page({ params }: { params: { slug: string } }) {
               className={styles.similarArticle}
             />
           ))}
+        <div
+          className={classnames(
+            styles.clientImg_leaderboard,
+            styles.similarArticles_ad
+          )}
+        >
+          <AdvertComponent
+            functionBasedProps={randomLeaderboardAd}
+            width={728}
+            height={90}
+          />
+        </div>
       </div>
     </main>
   );

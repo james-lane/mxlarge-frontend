@@ -5,7 +5,7 @@
 
 .articleDescription {
   padding: 1rem;
-  margin: -2rem 0 0;
+  margin: -2rem 0 2rem;
   background: #ffffff;
   position: relative;
   z-index: 1;
@@ -113,7 +113,12 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .similarArticles_ad {
+    grid-column: span 2;
+    margin: 0 auto;
+  }
+
   .articleDescription {
-    margin: -6.5rem 0 0;
+    margin: -6.5rem 0 2rem;
   }
 }
