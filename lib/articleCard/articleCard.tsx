@@ -6,14 +6,13 @@ import classnames from 'classnames';
 import {
   Description,
   DescriptionProps,
-  Tag,
 } from '../descriptionContainer/descriptionContainer';
 
 interface ArticleCardProps extends DescriptionProps {
   link: string;
   img: SanityAsset;
   className?: string;
-  size?: 'large';
+  size?: 'large' | 'small';
 }
 
 export const ArticleCard = ({

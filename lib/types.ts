@@ -2,22 +2,41 @@ import { SanityAsset } from '@sanity/image-url/lib/types/types';
 import { PortableTextBlock } from '@portabletext/react';
 import { Tag } from './descriptionContainer';
 
-export type Post = {
+export interface Post {
   _id: string;
-  title?: string;
-  publishedAt?: string;
+  _type: string;
+  title: string;
+  publishedAt: string;
   slug: {
     current: string;
   };
   categories?: Tag[];
   imageAsset: SanityAsset;
-  body?: PortableTextBlock[];
-};
+  body: PortableTextBlock[];
+}
 
-export type Advert = {
+export interface Advert {
   _id: string;
+  _type: string;
   title: string;
   advertCategory: string;
   url: string;
   imageAsset: SanityAsset;
-};
+}
+
+export interface AdvertProps {
+  size:
+    | 'leaderboard'
+    | 'billboard'
+    | 'sidebar'
+    | 'medium-rectangle'
+    | 'wallpaper';
+
+  style?: React.CSSProperties;
+  className?: string;
+}
+
+export interface AdvertIndicator {
+  _type: string;
+  size: string;
+}

@@ -12,6 +12,7 @@ export const singlePostQuery = groq`*[_type == "post" && slug.current == $slug &
 
 export const postQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null)] | order(publishedAt desc) [0..26]{
   _id,
+  _type,
   title,
   publishedAt,
   slug,
@@ -19,7 +20,7 @@ export const postQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) &
   "imageAsset": mainImage.asset
 }`;
 
-export const categoryQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null) && (count((categories[]->slug.current)[@ in [$category]]) > 0)] | order(publishedAt desc) [0..26]{
+export const categoryQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null) && (count((categories[]->slug.current)[@ in [$category]]) > 0)] | order(publishedAt desc) [0..23]{
   _id,
   title,
   publishedAt,
@@ -37,8 +38,9 @@ export const similarPostsQuery = groq`*[_type == "post" && !(_id in path('drafts
   "imageAsset": mainImage.asset
 }`;
 
-export const adsQuery = groq`*[_type == "advert"]{
+export const adsQuery = groq`*[_type == "advert" && !(_id in path('drafts.**'))]{
   _id,
+  _type,
   title,
   advertCategory,
   url,

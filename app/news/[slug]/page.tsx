@@ -2,17 +2,13 @@ import styles from './articlePage.module.css';
 import { Oswald } from 'next/font/google';
 import classNames from 'classnames';
 import { sanityFetch } from '@/utils/sanity/client';
-import { Advert, Post } from '@/lib/types';
+import { Post } from '@/lib/types';
 import SanityImage from '@/lib/sanityImage/SanityImage';
 import { PortableText } from '@portabletext/react';
 import { ArticleCard } from '@/lib/articleCard';
 import VideoPlayer from '@/lib/videoPlayer/videoPlayer';
 import { Description } from '@/lib/descriptionContainer';
-import {
-  adsQuery,
-  similarPostsQuery,
-  singlePostQuery,
-} from '@/utils/sanity/query';
+import { similarPostsQuery, singlePostQuery } from '@/utils/sanity/query';
 import { AdvertComponent } from '@/lib/advert';
 import { notFound } from 'next/navigation';
 import { getImageDimensions } from '@sanity/asset-utils';
@@ -23,41 +19,15 @@ const oswald = Oswald({ subsets: ['latin'] });
 export default async function Page({ params }: { params: { slug: string } }) {
   const post: Post = await sanityFetch({
     query: singlePostQuery,
-    // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
     tags: ['post'],
     qParams: { slug: params.slug },
   });
 
   const similarStories: Post[] = await sanityFetch({
     query: similarPostsQuery,
-    // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
     tags: ['post'],
     qParams: { slug: params.slug },
   });
-
-  const allAds: Advert[] = await sanityFetch({
-    query: adsQuery,
-    // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
-    tags: ['advert'],
-  });
-
-  const homepageAds: Advert[] = allAds.filter(
-    (ad) =>
-      ad.advertCategory === 'sidebar' ||
-      ad.advertCategory === 'medium-rectangle'
-  );
-
-  const leaderboardAds: Advert[] = allAds.filter(
-    (ad) => ad.advertCategory === 'leaderboard'
-  );
-
-  const randomHomepageAd = (): Advert => {
-    return homepageAds[Math.floor(Math.random() * homepageAds.length)];
-  };
-
-  const randomLeaderboardAd = (): Advert => {
-    return leaderboardAds[Math.floor(Math.random() * leaderboardAds.length)];
-  };
 
   const serializers = {
     types: {
@@ -109,27 +79,15 @@ export default async function Page({ params }: { params: { slug: string } }) {
             className={styles.articleDescription}
           />
           <div className={styles.clientImg_leaderboard}>
-            <AdvertComponent
-              functionBasedProps={randomLeaderboardAd}
-              width={728}
-              height={90}
-            />
+            <AdvertComponent size={'leaderboard'} />
           </div>
           <PortableText value={post.body!} components={serializers} />
           <div className={styles.clientImg_leaderboard}>
-            <AdvertComponent
-              functionBasedProps={randomLeaderboardAd}
-              width={728}
-              height={90}
-            />
+            <AdvertComponent size={'leaderboard'} />
           </div>
         </div>
         <div className={styles.clientImg_sidebar}>
-          <AdvertComponent
-            functionBasedProps={randomHomepageAd}
-            width={300}
-            height={600}
-          />
+          <AdvertComponent size={'sidebar'} />
         </div>
       </div>
       <div className={styles.similarArticles}>
@@ -156,11 +114,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             styles.similarArticles_ad
           )}
         >
-          <AdvertComponent
-            functionBasedProps={randomLeaderboardAd}
-            width={728}
-            height={90}
-          />
+          <AdvertComponent size={'leaderboard'} />
         </div>
       </div>
     </main>

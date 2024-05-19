@@ -1,14 +1,13 @@
-import { client, sanityFetch } from '@/utils/sanity/client';
+import { sanityFetch } from '@/utils/sanity/client';
 import styles from './backgroundWallpaper.module.css';
 import { Advert } from '../types';
-import { SanityImageAsset, getImageDimensions } from '@sanity/asset-utils';
+import { getImageDimensions } from '@sanity/asset-utils';
 import { AdvertComponent } from '../advert';
 import { adsQuery } from '@/utils/sanity/query';
 
 export const BackgroundWallpaper = async () => {
   const allAds: Advert[] = await sanityFetch({
     query: adsQuery,
-    // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
     tags: ['advert'],
   });
 
@@ -20,16 +19,13 @@ export const BackgroundWallpaper = async () => {
     return wallpaperAds[Math.floor(Math.random() * wallpaperAds.length)];
   };
 
-  const { height, width } = getImageDimensions(
-    randomWallpaperAd().imageAsset as SanityImageAsset
-  );
+  const { title, url, imageAsset } = randomWallpaperAd();
+  const { height, width } = getImageDimensions(imageAsset._ref);
 
   return (
     <div className={styles.wallpaperContainer}>
       <AdvertComponent
-        functionBasedProps={randomWallpaperAd}
-        width={width}
-        height={height}
+        size={'wallpaper'}
         style={{ maxWidth: 'initial', borderRadius: 0 }}
       />
     </div>
