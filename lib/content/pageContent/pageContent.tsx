@@ -1,7 +1,7 @@
 import { AdvertComponent } from '@/lib/advert';
 import { ArticleCard } from '@/lib/articleCard';
 import { Advert, AdvertIndicator, Post } from '@/lib/types';
-import styles from './pageContent.module.css';
+import styles from '../pageContent.module.css';
 
 export const PageContent = ({ content }: { content: (Post | Advert)[] }) => {
   const structuredContent = () => {

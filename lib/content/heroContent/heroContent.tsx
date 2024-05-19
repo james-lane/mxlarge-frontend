@@ -2,7 +2,8 @@ import { AdvertComponent } from '@/lib/advert';
 import { ArticleCard } from '@/lib/articleCard';
 import { Advert, AdvertIndicator, Post } from '@/lib/types';
 import classnames from 'classnames';
-import styles from './heroContent.module.css';
+import heroStyles from './heroContent.module.css';
+import styles from '../pageContent.module.css';
 
 export const HeroContent = ({
   content,
@@ -62,7 +63,7 @@ export const HeroContent = ({
             img={post.imageAsset}
             className={classnames(
               styles.article,
-              index === 0 && styles.heroArticle
+              index === 0 && heroStyles.heroArticle
             )}
             size={index === 0 ? 'large' : 'small'}
           />

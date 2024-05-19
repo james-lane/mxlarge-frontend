@@ -1,35 +1,5 @@
-.page {
-  display: grid;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.clientImg_sidebar {
-  display: none;
-}
-
 @media screen and (min-width: 768px) {
-  .page {
-    grid-template-columns: 1fr 1fr 300px;
-    grid-template-rows: repeat(4, auto);
-  }
-
   .heroArticle {
     grid-column: 1 / span 2;
-  }
-  
-  .clientImg_leaderboard {
-    grid-column: 1 / span 2;
-  }
-  
-  .clientImg_sidebar {
-    display: initial;
-    grid-column: 3;
-    grid-row: 1 / span 4;
-  }
-
-  .clientImg_sidebar img {
-    position: sticky;
-    top: 1.5rem;
   }
 }
