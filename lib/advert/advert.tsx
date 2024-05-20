@@ -5,6 +5,8 @@ import { sanityFetch, urlForImage } from '@/utils/sanity/client';
 import styles from './advert.module.css';
 import { adsQuery } from '@/utils/sanity/query';
 
+export const runtime = 'edge';
+
 const dimensions = {
   leaderboard: {
     width: 768,
