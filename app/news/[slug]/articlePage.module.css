@@ -13,17 +13,12 @@
 
 .articleBody {
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: 1fr calc(300px + 4rem);
 }
 
 .clientImg_sidebar {
   padding: 2rem;
   display: none;
-}
-
-.clientImg_sidebar img {
-  position: sticky;
-  top: 2rem;
 }
 
 .title {
@@ -107,6 +102,10 @@
 @media screen and (min-width: 768px) {
   .clientImg_sidebar {
     display: block;
+  }
+
+  .clientImg_sidebar img {
+    margin-bottom: 1rem;
   }
 
   .similarArticles {

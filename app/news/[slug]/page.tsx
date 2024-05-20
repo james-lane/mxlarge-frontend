@@ -88,6 +88,20 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </div>
         <div className={styles.clientImg_sidebar}>
           <AdvertComponent size={'sidebar'} />
+          <AdvertComponent size={'sidebar'} />
+          <AdvertComponent size={'sidebar'} />
+          <AdvertComponent size={'sidebar'} />
+          <AdvertComponent size={'sidebar'} />
+          <AdvertComponent size={'sidebar'} />
+          <AdvertComponent size={'sidebar'} />
+          <AdvertComponent size={'sidebar'} />
+          <AdvertComponent size={'sidebar'} />
+          <AdvertComponent size={'sidebar'} />
+          <AdvertComponent size={'sidebar'} />
+          <AdvertComponent size={'sidebar'} />
+          <AdvertComponent size={'sidebar'} />
+          <AdvertComponent size={'sidebar'} />
+          <AdvertComponent size={'sidebar'} />
         </div>
       </div>
       <div className={styles.similarArticles}>
