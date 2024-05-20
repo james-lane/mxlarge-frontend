@@ -5,8 +5,6 @@ import { sanityFetch, urlForImage } from '@/utils/sanity/client';
 import styles from './advert.module.css';
 import { adsQuery } from '@/utils/sanity/query';
 
-export const runtime = 'edge';
-
 const dimensions = {
   leaderboard: {
     width: 768,
@@ -37,7 +35,7 @@ export const AdvertComponent = async ({
 }: AdvertProps) => {
   const allAds: Advert[] = await sanityFetch({
     query: adsQuery,
-    tags: ['advert'],
+    tags: [],
   });
 
   const randomAd = (size: AdvertProps['size']): Advert => {
