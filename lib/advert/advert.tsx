@@ -35,7 +35,7 @@ export const AdvertComponent = async ({
 }: AdvertProps) => {
   const allAds: Advert[] = await sanityFetch({
     query: adsQuery,
-    tags: [],
+    tags: ['advert'],
   });
 
   const randomAd = (size: AdvertProps['size']): Advert => {
