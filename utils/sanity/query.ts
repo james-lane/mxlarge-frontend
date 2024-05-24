@@ -10,7 +10,17 @@ export const singlePostQuery = groq`*[_type == "post" && slug.current == $slug &
   body
 }`;
 
-export const postQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null)] | order(publishedAt desc) [0..26]{
+export const postQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null)] | order(publishedAt desc) [0..99]{
+  _id,
+  _type,
+  title,
+  publishedAt,
+  slug,
+  categories[]->{title},
+  "imageAsset": mainImage.asset
+}`;
+
+export const postQueryNextPage = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null) && (publishedAt > $lastPublishedAt || (publishedAt == $lastPublishedAt && _id > $lastId)] | order(publishedAt desc) [0..99]{
   _id,
   _type,
   title,
