@@ -10,7 +10,7 @@ export const singlePostQuery = groq`*[_type == "post" && slug.current == $slug &
   body
 }`;
 
-export const postQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null)] | order(publishedAt desc) [0..99]{
+export const postQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null)] | order(publishedAt desc) [0..98]{
   _id,
   _type,
   title,
@@ -20,7 +20,7 @@ export const postQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) &
   "imageAsset": mainImage.asset
 }`;
 
-export const postQueryNextPage = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null) && (publishedAt > $lastPublishedAt || (publishedAt == $lastPublishedAt && _id > $lastId)] | order(publishedAt desc) [0..99]{
+export const postQueryNextPage = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null) && (publishedAt > $lastPublishedAt || (publishedAt == $lastPublishedAt && _id > $lastId)] | order(publishedAt desc) [0..98]{
   _id,
   _type,
   title,
@@ -30,7 +30,7 @@ export const postQueryNextPage = groq`*[_type == "post" && !(_id in path('drafts
   "imageAsset": mainImage.asset
 }`;
 
-export const categoryQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null) && (count((categories[]->slug.current)[@ in [$category]]) > 0)] | order(publishedAt desc) [0..23]{
+export const categoryQuery = groq`*[_type == "post" && !(_id in path('drafts.**')) && !(slug == null) && (count((categories[]->slug.current)[@ in [$category]]) > 0)] | order(publishedAt desc) [0..98]{
   _id,
   title,
   publishedAt,
