@@ -1,7 +1,7 @@
 import styles from './articlePage.module.css';
 import { Oswald } from 'next/font/google';
 import classNames from 'classnames';
-import { sanityFetch } from '@/utils/sanity/client';
+import { sanityFetch, urlForImage } from '@/utils/sanity/client';
 import { Post } from '@/lib/types';
 import SanityImage from '@/lib/sanityImage/SanityImage';
 import { PortableText } from '@portabletext/react';
@@ -16,12 +16,41 @@ import classnames from 'classnames';
 
 const oswald = Oswald({ subsets: ['latin'] });
 
+let ogTitle: string;
+let ogImageUrl: string;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  return {
+    openGraph: {
+      title: ogTitle,
+      url: `https://www.mxlarge.com/news/${params.slug}`,
+      siteName: 'MX Large',
+      images: [
+        {
+          url: ogImageUrl,
+          width: 300,
+          height: 300,
+        },
+      ],
+      locale: 'en_GB',
+      type: 'website',
+    },
+  };
+}
+
 export default async function Page({ params }: { params: { slug: string } }) {
   const post: Post = await sanityFetch({
     query: singlePostQuery,
     tags: ['post'],
     qParams: { slug: params.slug },
   });
+
+  ogTitle = post.title;
+  ogImageUrl = urlForImage(post.imageAsset).url();
 
   const similarStories: Post[] = await sanityFetch({
     query: similarPostsQuery,
