@@ -26,7 +26,7 @@ export async function generateMetadata({
 }) {
   return {
     openGraph: {
-      title: ogTitle,
+      title: `${ogTitle} | MX Large`,
       url: `https://www.mxlarge.com/news/${params.slug}`,
       siteName: 'MX Large',
       images: [
@@ -48,9 +48,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
     tags: ['post'],
     qParams: { slug: params.slug },
   });
-
-  ogTitle = post.title;
-  ogImageUrl = urlForImage(post.imageAsset).url();
 
   const similarStories: Post[] = await sanityFetch({
     query: similarPostsQuery,
@@ -86,6 +83,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
   };
 
   if (!post) notFound();
+
+  ogTitle = post.title;
+  ogImageUrl = urlForImage(post.imageAsset).url();
 
   return (
     <main className={styles.article}>
