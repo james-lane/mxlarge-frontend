@@ -16,31 +16,31 @@ import classnames from 'classnames';
 
 const oswald = Oswald({ subsets: ['latin'] });
 
-let ogTitle: string;
-let ogImageUrl: string;
+// let ogTitle: string;
+// let ogImageUrl: string;
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  return {
-    openGraph: {
-      title: `${ogTitle} | MX Large`,
-      url: `https://www.mxlarge.com/news/${params.slug}`,
-      siteName: 'MX Large',
-      images: [
-        {
-          url: ogImageUrl,
-          width: 300,
-          height: 300,
-        },
-      ],
-      locale: 'en_GB',
-      type: 'website',
-    },
-  };
-}
+// export async function generateMetadata({
+//   params,
+// }: {
+//   params: { slug: string };
+// }) {
+//   return {
+//     openGraph: {
+//       title: `${ogTitle} | MX Large`,
+//       url: `https://www.mxlarge.com/news/${params.slug}`,
+//       siteName: 'MX Large',
+//       images: [
+//         {
+//           url: ogImageUrl,
+//           width: 300,
+//           height: 300,
+//         },
+//       ],
+//       locale: 'en_GB',
+//       type: 'website',
+//     },
+//   };
+// }
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const post: Post = await sanityFetch({
@@ -84,8 +84,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   if (!post) notFound();
 
-  ogTitle = post.title;
-  ogImageUrl = urlForImage(post.imageAsset).url();
+  // ogTitle = post.title;
+  // ogImageUrl = urlForImage(post.imageAsset).url();
 
   return (
     <main className={styles.article}>
