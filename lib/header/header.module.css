@@ -83,3 +83,9 @@
   min-height: 44px;
   width: 100%;
 }
+
+.logo {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
