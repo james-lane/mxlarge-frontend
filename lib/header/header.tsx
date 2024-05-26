@@ -54,17 +54,19 @@ export const Header = () => {
 
   return (
     <header className={styles.header}>
-      <picture className={styles.logo} onClick={router.refresh}>
-        {/* <source srcSet={LogoLight.src} media="(prefers-color-scheme: dark)" /> */}
-        <Image
-          src={LogoLight.src}
-          data-src={LogoLight.src}
-          alt="MXLarge Logo"
-          width={200}
-          height={31}
-          priority
-        />
-      </picture>
+      <Link href="/" prefetch={false}>
+        <picture className={styles.logo}>
+          {/* <source srcSet={LogoLight.src} media="(prefers-color-scheme: dark)" /> */}
+          <Image
+            src={LogoLight.src}
+            data-src={LogoLight.src}
+            alt="MXLarge Logo"
+            width={200}
+            height={31}
+            priority
+          />
+        </picture>
+      </Link>
       <button
         className={styles.icon}
         title="Navigation"
