@@ -28,6 +28,8 @@ const dimensions = {
   },
 };
 
+let previousSidebarAdId: string;
+
 export const AdvertComponent = async ({
   size,
   style,
@@ -40,13 +42,19 @@ export const AdvertComponent = async ({
 
   const randomAd = (size: AdvertProps['size']): Advert => {
     const filteredAds: Advert[] = allAds.filter(
-      (ad) => ad.advertCategory === size
+      (ad) => ad.advertCategory === size && ad._id !== previousSidebarAdId
     );
 
     return filteredAds[Math.floor(Math.random() * filteredAds.length)];
   };
 
-  const { url, imageAsset, title } = randomAd(size);
+  let chosenAd = randomAd(size);
+
+  if (chosenAd.advertCategory === 'sidebar') {
+    previousSidebarAdId = chosenAd._id;
+  }
+
+  const { url, imageAsset, title } = chosenAd;
 
   return (
     <Link href={url} target="_blank" className={className}>
