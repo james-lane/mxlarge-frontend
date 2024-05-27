@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { sanityFetch, urlForImage } from '@/utils/sanity/client';
 import styles from './advert.module.css';
 import { adsQuery } from '@/utils/sanity/query';
+import { sendGAEvent } from '@next/third-parties/google';
 
 const dimensions = {
   leaderboard: {
@@ -28,7 +29,7 @@ const dimensions = {
   },
 };
 
-let previousSidebarAdId: string;
+let previousSidebarAdTitle: string;
 
 export const AdvertComponent = async ({
   size,
@@ -42,16 +43,24 @@ export const AdvertComponent = async ({
 
   const randomAd = (size: AdvertProps['size']): Advert => {
     const filteredAds: Advert[] = allAds.filter(
-      (ad) => ad.advertCategory === size && ad._id !== previousSidebarAdId
+      (ad) => ad.advertCategory === size && ad.title !== previousSidebarAdTitle
     );
 
-    return filteredAds[Math.floor(Math.random() * filteredAds.length)];
+    const filteredAd =
+      filteredAds[Math.floor(Math.random() * filteredAds.length)];
+
+    sendGAEvent('event', 'advert_loaded', {
+      name: filteredAd.title,
+      size: filteredAd.advertCategory,
+    });
+
+    return filteredAd;
   };
 
   let chosenAd = randomAd(size);
 
   if (chosenAd.advertCategory === 'sidebar') {
-    previousSidebarAdId = chosenAd._id;
+    previousSidebarAdTitle = chosenAd.title;
   }
 
   const { url, imageAsset, title } = chosenAd;
