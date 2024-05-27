@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { Advert, AdvertProps } from '../types';
 import Image from 'next/image';
-import { sanityFetch, urlForImage } from '@/utils/sanity/client';
+import { urlForImage } from '@/utils/sanity/client';
 import styles from './advert.module.css';
-import { adsQuery } from '@/utils/sanity/query';
-import { sendGAEvent } from '@next/third-parties/google';
+import { getAdverts } from '@/utils/adverts/getAdverts';
+import { SendAdEvent } from '@/utils/google/sendEvent';
 
 const dimensions = {
   leaderboard: {
@@ -36,10 +36,7 @@ export const AdvertComponent = async ({
   style,
   className,
 }: AdvertProps) => {
-  const allAds: Advert[] = await sanityFetch({
-    query: adsQuery,
-    tags: ['advert'],
-  });
+  const allAds: Advert[] = await getAdverts();
 
   const randomAd = (size: AdvertProps['size']): Advert => {
     const filteredAds: Advert[] = allAds.filter(
@@ -48,11 +45,6 @@ export const AdvertComponent = async ({
 
     const filteredAd =
       filteredAds[Math.floor(Math.random() * filteredAds.length)];
-
-    sendGAEvent('event', 'advert_loaded', {
-      name: filteredAd.title,
-      size: filteredAd.advertCategory,
-    });
 
     return filteredAd;
   };
@@ -81,6 +73,7 @@ export const AdvertComponent = async ({
         unoptimized
         style={style}
       />
+      <SendAdEvent ad={chosenAd} />
     </Link>
   );
 };
