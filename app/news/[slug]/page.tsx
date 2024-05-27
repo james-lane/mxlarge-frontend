@@ -25,6 +25,9 @@ export async function generateMetadata({
   params: { slug: string };
 }) {
   const post = await getPost({ params });
+
+  if (!post) notFound();
+
   return {
     openGraph: {
       title: `${post.title} | MX Large`,
