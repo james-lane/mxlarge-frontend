@@ -29,7 +29,7 @@ const dimensions = {
   },
 };
 
-let previousSidebarAdTitle: string;
+let previousSidebarAdId: string;
 
 export const AdvertComponent = async ({
   size,
@@ -43,7 +43,7 @@ export const AdvertComponent = async ({
 
   const randomAd = (size: AdvertProps['size']): Advert => {
     const filteredAds: Advert[] = allAds.filter(
-      (ad) => ad.advertCategory === size && ad.title !== previousSidebarAdTitle
+      (ad) => ad.advertCategory === size && ad._id !== previousSidebarAdId
     );
 
     const filteredAd =
@@ -60,7 +60,7 @@ export const AdvertComponent = async ({
   let chosenAd = randomAd(size);
 
   if (chosenAd.advertCategory === 'sidebar') {
-    previousSidebarAdTitle = chosenAd.title;
+    previousSidebarAdId = chosenAd._id;
   }
 
   const { url, imageAsset, title } = chosenAd;
