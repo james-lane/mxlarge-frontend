@@ -10,7 +10,7 @@ export const SendAdEvent = ({ ad }: { ad: Advert }) => {
       name: ad.title,
       size: ad.advertCategory,
     });
-  }, []);
+  });
 
   return null;
 };
