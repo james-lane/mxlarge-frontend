@@ -13,42 +13,38 @@ import { AdvertComponent } from '@/lib/advert';
 import { notFound } from 'next/navigation';
 import { getImageDimensions } from '@sanity/asset-utils';
 import classnames from 'classnames';
+import { getPost } from '@/utils/posts/getPost';
 
 const oswald = Oswald({ subsets: ['latin'] });
 
-// let ogTitle: string;
-// let ogImageUrl: string;
+let openGraph = {};
 
-// export async function generateMetadata({
-//   params,
-// }: {
-//   params: { slug: string };
-// }) {
-//   return {
-//     openGraph: {
-//       title: `${ogTitle} | MX Large`,
-//       url: `https://www.mxlarge.com/news/${params.slug}`,
-//       siteName: 'MX Large',
-//       images: [
-//         {
-//           url: ogImageUrl,
-//           width: 300,
-//           height: 300,
-//         },
-//       ],
-//       locale: 'en_GB',
-//       type: 'website',
-//     },
-//   };
-// }
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const post = await getPost({ params });
+  return {
+    openGraph: {
+      title: `${post.title} | MX Large`,
+      url: `https://www.mxlarge.com/news/${post.slug.current}`,
+      siteName: 'MX Large',
+      images: [
+        {
+          url: urlForImage(post.imageAsset).url(),
+          width: 300,
+          height: 300,
+        },
+      ],
+      locale: 'en_GB',
+      type: 'website',
+    },
+  };
+}
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const post: Post = await sanityFetch({
-    query: singlePostQuery,
-    tags: ['post'],
-    qParams: { slug: params.slug },
-  });
-
+  const post = await getPost({ params });
   const similarStories: Post[] = await sanityFetch({
     query: similarPostsQuery,
     tags: ['post'],
@@ -83,9 +79,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
   };
 
   if (!post) notFound();
-
-  // ogTitle = post.title;
-  // ogImageUrl = urlForImage(post.imageAsset).url();
 
   return (
     <main className={styles.article}>
