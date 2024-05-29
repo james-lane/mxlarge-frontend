@@ -3,7 +3,13 @@ import { ArticleCard } from '@/lib/articleCard';
 import { Advert, AdvertIndicator, Post } from '@/lib/types';
 import styles from '../pageContent.module.css';
 
-export const PageContent = ({ content }: { content: (Post | Advert)[] }) => {
+export const PageContent = ({
+  content,
+  adverts,
+}: {
+  content: (Post | Advert)[];
+  adverts: Advert[];
+}) => {
   const structuredContent = () => {
     const pageContent: (Post | Advert | AdvertIndicator)[] = content
       .flatMap((item, i) =>
@@ -27,6 +33,7 @@ export const PageContent = ({ content }: { content: (Post | Advert)[] }) => {
             case 'leaderboard' || 'billboard':
               return (
                 <AdvertComponent
+                  adverts={adverts}
                   key={index}
                   className={styles.clientImg_leaderboard}
                   size={'leaderboard'}
@@ -36,6 +43,7 @@ export const PageContent = ({ content }: { content: (Post | Advert)[] }) => {
             default:
               return (
                 <AdvertComponent
+                  adverts={adverts}
                   key={index}
                   className={styles.clientImg_sidebar}
                   size={'sidebar'}

@@ -14,10 +14,9 @@ import { notFound } from 'next/navigation';
 import { getImageDimensions } from '@sanity/asset-utils';
 import classnames from 'classnames';
 import { getPost } from '@/utils/posts/getPost';
+import { getAdverts } from '@/utils/adverts/getAdverts';
 
 const oswald = Oswald({ subsets: ['latin'] });
-
-let openGraph = {};
 
 export async function generateMetadata({
   params,
@@ -48,6 +47,7 @@ export async function generateMetadata({
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const post = await getPost({ params });
+  const adverts = await getAdverts();
   const similarStories: Post[] = await sanityFetch({
     query: similarPostsQuery,
     tags: ['post'],
@@ -104,15 +104,15 @@ export default async function Page({ params }: { params: { slug: string } }) {
             className={styles.articleDescription}
           />
           <div className={styles.clientImg_leaderboard}>
-            <AdvertComponent size={'leaderboard'} />
+            <AdvertComponent size={'leaderboard'} adverts={adverts} />
           </div>
           <PortableText value={post.body!} components={serializers} />
           <div className={styles.clientImg_leaderboard}>
-            <AdvertComponent size={'leaderboard'} />
+            <AdvertComponent size={'leaderboard'} adverts={adverts} />
           </div>
         </div>
         <div className={styles.clientImg_sidebar}>
-          <AdvertComponent size={'sidebar'} />
+          <AdvertComponent size={'sidebar'} adverts={adverts} />
         </div>
       </div>
       <div className={styles.similarArticles}>
@@ -139,7 +139,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             styles.similarArticles_ad
           )}
         >
-          <AdvertComponent size={'leaderboard'} />
+          <AdvertComponent size={'leaderboard'} adverts={adverts} />
         </div>
       </div>
     </main>

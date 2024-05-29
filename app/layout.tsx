@@ -10,6 +10,7 @@ import { BackgroundWallpaper } from '@/lib/backgroundWallpaper';
 import { NewSitePopup } from '@/lib/newSitePopup';
 import { Suspense } from 'react';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import DataProvider from './data-provider';
 config.autoAddCss = false;
 
 export const runtime = 'nodejs';
@@ -29,11 +30,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <BackgroundWallpaper />
-        <Header />
-        <div className={styles.container}>
-          <div className={styles.content}>{children}</div>
-        </div>
+        <DataProvider>
+          <BackgroundWallpaper />
+          <Header />
+          <div className={styles.container}>
+            <div className={styles.content}>{children}</div>
+          </div>
+        </DataProvider>
         <Footer />
         <Suspense>
           <NewSitePopup />

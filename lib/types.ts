@@ -25,6 +25,7 @@ export interface Advert {
 }
 
 export interface AdvertProps {
+  adverts: Advert[];
   size:
     | 'leaderboard'
     | 'billboard'

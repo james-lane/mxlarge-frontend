@@ -6,9 +6,11 @@ import heroStyles from './heroContent.module.css';
 import styles from '../pageContent.module.css';
 
 export const HeroContent = ({
+  adverts,
   content,
 }: {
-  [key: string]: (Post | Advert | AdvertIndicator)[];
+  adverts: Advert[];
+  content: (Post | Advert | AdvertIndicator)[];
 }) => {
   content.splice(1, 0, {
     _type: 'advert',
@@ -35,6 +37,7 @@ export const HeroContent = ({
             case 'leaderboard' || 'billboard':
               return (
                 <AdvertComponent
+                  adverts={adverts}
                   key={index}
                   className={styles.clientImg_leaderboard}
                   size={'leaderboard'}
@@ -44,6 +47,7 @@ export const HeroContent = ({
             default:
               return (
                 <AdvertComponent
+                  adverts={adverts}
                   key={index}
                   className={styles.clientImg_sidebar}
                   size={'sidebar'}
