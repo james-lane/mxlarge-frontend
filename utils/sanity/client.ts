@@ -29,7 +29,7 @@ export async function sanityFetch<QueryResponse>({
   tags: string[];
 }): Promise<QueryResponse> {
   return client.fetch<QueryResponse>(query, qParams, {
-    cache: tags.includes('advert') ? 'no-cache' : 'force-cache',
+    cache: 'force-cache',
     next: { tags },
   });
 }
