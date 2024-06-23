@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTag } from '@fortawesome/sharp-regular-svg-icons';
+import { faTag } from '@awesome.me/kit-5002308279/icons/sharp/regular';
 import { Oswald, Inter } from 'next/font/google';
 import styles from './descriptionContainer.module.css';
 

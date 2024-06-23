@@ -5,7 +5,10 @@ import Link from 'next/link';
 import LogoLight from '../../public/mxlarge-logo-light.svg';
 // import LogoDark from '../../public/mxlarge-logo-dark.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes } from '@fortawesome/sharp-regular-svg-icons';
+import {
+  faBars,
+  faTimes,
+} from '@awesome.me/kit-5002308279/icons/sharp/regular';
 import { useEffect, useState } from 'react';
 
 import { Oswald } from 'next/font/google';
@@ -27,18 +30,6 @@ const navigation = [
     name: 'Interviews',
     route: '/interviews',
   },
-  // {
-  //   name: 'Galleries',
-  //   route: '/galleries',
-  // },
-  // {
-  //   name: 'Products',
-  //   route: '/products',
-  // },
-  // {
-  //   name: 'Calendar',
-  //   route: '/calendar',
-  // },
   {
     name: 'MXGP Live',
     route: 'https://results.mxgp.com/mxgp/livestandings.aspx',
@@ -56,7 +47,6 @@ export const Header = () => {
     <header className={styles.header}>
       <Link href="/" prefetch={false}>
         <picture className={styles.logo}>
-          {/* <source srcSet={LogoLight.src} media="(prefers-color-scheme: dark)" /> */}
           <Image
             src={LogoLight.src}
             data-src={LogoLight.src}

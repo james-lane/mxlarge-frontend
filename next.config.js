@@ -10,6 +10,12 @@ const nextConfig = {
         port: '',
         pathname: '/images/8oyzogbt/production/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        port: '',
+        pathname: '/images/8oyzogbt/stub/**',
+      },
     ],
   },
   async redirects() {
