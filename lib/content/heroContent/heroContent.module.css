@@ -2,4 +2,8 @@
   .heroArticle {
     grid-column: 1 / span 2;
   }
+
+  .heroArticle [class^="articleCard_image"] {
+    aspect-ratio: 16 / 9;
+  }
 }
