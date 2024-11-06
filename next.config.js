@@ -25,6 +25,11 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/:slug(.php)',
+        destination: '/',
+        permanent: true,
+      },
     ];
   },
   logging: {
