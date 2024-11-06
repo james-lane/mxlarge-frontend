@@ -26,7 +26,7 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/:slug(.php)',
+        source: '/(\\w+.php)',
         destination: '/',
         permanent: true,
       },
