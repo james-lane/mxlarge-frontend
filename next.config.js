@@ -21,12 +21,12 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/index.php',
+        source: '/(\\w+.php)',
         destination: '/',
         permanent: true,
       },
       {
-        source: '/(\\w+.php)',
+        source: '/feed',
         destination: '/',
         permanent: true,
       },
