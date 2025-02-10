@@ -31,6 +31,10 @@ const navigation = [
     route: '/interviews',
   },
   {
+    name: 'Products',
+    route: '/products',
+  },
+  {
     name: 'MXGP Live',
     route: 'https://results.mxgp.com/mxgp/livestandings.aspx',
   },
