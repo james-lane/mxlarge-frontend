@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "pages:build": "npx @cloudflare/next-on-pages",
     "start": "next start",
     "lint": "next lint"
   },
@@ -21,6 +20,7 @@
     "@types/node": "20.5.0",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
+    "@vercel/analytics": "^1.5.0",
     "babel-plugin-macros": "^3.1.0",
     "classnames": "^2.3.2",
     "eslint": "8.47.0",

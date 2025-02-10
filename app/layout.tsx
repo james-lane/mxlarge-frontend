@@ -10,6 +10,7 @@ import { BackgroundWallpaper } from '@/lib/backgroundWallpaper';
 import { NewSitePopup } from '@/lib/newSitePopup';
 import { Suspense } from 'react';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { Analytics } from '@vercel/analytics/next';
 import DataProvider from './data-provider';
 config.autoAddCss = false;
 
@@ -42,6 +43,7 @@ export default function RootLayout({
           <NewSitePopup />
         </Suspense>
         <GoogleAnalytics gaId="G-D85QCRQGHH" />
+        <Analytics />
       </body>
     </html>
   );
