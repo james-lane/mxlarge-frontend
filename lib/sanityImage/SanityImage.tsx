@@ -15,6 +15,9 @@ type Props = Omit<ImageProps, 'src'> & {
 export default function SanityImage({ src, alt, ...props }: Props) {
   const { width, height, quality = 75 } = props;
 
+  // Ensure height is a number for Sanity's image builder
+  const heightValue = height ? (typeof height === 'number' ? height : parseInt(String(height), 10)) : width;
+
   const base64ImageUrl = btoa(
     urlForImage(src)
       .width(100)
@@ -28,7 +31,7 @@ export default function SanityImage({ src, alt, ...props }: Props) {
   // Use Sanity's CDN for image optimization to avoid Vercel image optimization costs
   const optimizedImageUrl = urlForImage(src)
     .width(width)
-    .height(height || width)
+    .height(heightValue)
     .quality(quality)
     .auto('format')
     .fit('max')

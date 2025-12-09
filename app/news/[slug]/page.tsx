@@ -15,8 +15,23 @@ import { getImageDimensions } from '@sanity/asset-utils';
 import classnames from 'classnames';
 import { getPost } from '@/utils/posts/getPost';
 import { getAdverts } from '@/utils/adverts/getAdverts';
+import { getPosts } from '@/utils/posts/getPosts';
 
 const oswald = Oswald({ subsets: ['latin'] });
+
+// Revalidate every hour - webhooks will invalidate immediately when articles are updated
+export const revalidate = 3600;
+
+// Allow dynamic params for older articles not pre-rendered
+export const dynamicParams = true;
+
+// Pre-render the latest 100 articles at build time
+export async function generateStaticParams() {
+  const posts = await getPosts();
+  return posts.slice(0, 100).map((post) => ({
+    slug: post.slug.current,
+  }));
+}
 
 export async function generateMetadata({
   params,

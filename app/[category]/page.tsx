@@ -6,6 +6,19 @@ import { AdvertComponent } from '@/lib/advert';
 import { PageContent } from '@/lib/content/pageContent';
 import { getAdverts } from '@/utils/adverts/getAdverts';
 
+// Revalidate every 10 minutes to show latest articles in categories
+export const revalidate = 600;
+
+// Pre-render known category pages at build time
+export async function generateStaticParams() {
+  return [
+    { category: 'news' },
+    { category: 'interviews' },
+    { category: 'videos' },
+    { category: 'products' },
+  ];
+}
+
 export default async function Category({
   params,
 }: {

@@ -7,6 +7,9 @@ import { chunkPosts } from '@/utils/posts/chunk';
 import { getPosts } from '@/utils/posts/getPosts';
 import { getAdverts } from '@/utils/adverts/getAdverts';
 
+// Revalidate every 5 minutes to show latest articles
+export const revalidate = 300;
+
 export default async function Home() {
   const posts: Post[] = await getPosts();
   const adverts: Advert[] = await getAdverts();
