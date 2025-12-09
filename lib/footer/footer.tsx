@@ -26,6 +26,7 @@ export const Footer = () => {
             width={200}
             height={31}
             priority
+            unoptimized
           />
         </picture>
       </Link>

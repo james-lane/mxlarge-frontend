@@ -58,6 +58,7 @@ export const Header = () => {
             width={200}
             height={31}
             priority
+            unoptimized
           />
         </picture>
       </Link>
