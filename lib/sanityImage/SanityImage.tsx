@@ -29,13 +29,16 @@ export default function SanityImage({ src, alt, ...props }: Props) {
   );
 
   // Use Sanity's CDN for image optimization to avoid Vercel image optimization costs
-  const optimizedImageUrl = urlForImage(src)
+  const builder = urlForImage(src)
     .width(width)
-    .height(heightValue)
     .quality(quality)
-    .auto('format')
-    .fit('max')
-    .url();
+    .auto('format');
+
+  // If height is specified and different from width, set it explicitly
+  // Don't use fit() to avoid unwanted cropping from Sanity's hotspot data
+  const optimizedImageUrl = height && height !== width
+    ? builder.height(heightValue).url()
+    : builder.url();
 
   return (
     <div className={classnames(props.className)}>

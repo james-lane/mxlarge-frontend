@@ -76,14 +76,18 @@ export default async function Page({ params }: { params: { slug: string } }) {
         return <VideoPlayer url={url} />;
       },
       image: ({ value }: any) => {
-        const { height } = getImageDimensions(value.asset);
+        const { width: originalWidth, height: originalHeight } = getImageDimensions(value.asset);
+
+        // Calculate proportional height for target width of 596
+        const targetWidth = 596;
+        const proportionalHeight = Math.round((originalHeight / originalWidth) * targetWidth);
 
         return (
           <SanityImage
             src={value.asset}
             alt={value.title}
-            width={596}
-            height={height}
+            width={targetWidth}
+            height={proportionalHeight}
             style={{
               width: '100%',
               height: 'auto',
