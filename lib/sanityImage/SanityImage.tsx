@@ -13,7 +13,7 @@ type Props = Omit<ImageProps, 'src'> & {
 };
 
 export default function SanityImage({ src, alt, ...props }: Props) {
-  const { width, height, quality = 75 } = props;
+  const { width, height, quality = 90 } = props;
 
   // Ensure height is a number for Sanity's image builder
   const heightValue = height ? (typeof height === 'number' ? height : parseInt(String(height), 10)) : width;
