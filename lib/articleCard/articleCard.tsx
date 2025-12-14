@@ -25,7 +25,7 @@ export const ArticleCard = ({
   size,
 }: ArticleCardProps) => {
   return (
-    <Link href={link} className={classnames(styles.articleCard, className)}>
+    <Link href={link} prefetch={false} className={classnames(styles.articleCard, className)}>
       {size ? (
         <SanityImage
           src={img}

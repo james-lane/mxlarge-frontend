@@ -77,7 +77,7 @@ export const Header = () => {
           ></div>
           <nav className={classNames(oswald.className, styles.nav)}>
             {navigation.map(({ name, route }, i) => (
-              <Link key={i} href={route} onClick={() => router.push(route)}>
+              <Link key={i} href={route} prefetch={false} onClick={() => router.push(route)}>
                 {name}
               </Link>
             ))}
