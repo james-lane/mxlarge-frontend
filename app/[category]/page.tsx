@@ -24,12 +24,14 @@ export default async function Category({
 }: {
   params: { category: string };
 }) {
-  const posts: Post[] = await sanityFetch({
-    query: categoryQuery,
-    tags: ['post'],
-    qParams: { category: params.category },
-  });
-  const adverts: Advert[] = await getAdverts();
+  const [posts, adverts] = await Promise.all([
+    sanityFetch<Post[]>({
+      query: categoryQuery,
+      tags: ['post'],
+      qParams: { category: params.category },
+    }),
+    getAdverts(),
+  ]);
 
   const chunkSize = 4;
   const chunkPosts = (): Post[][] => {

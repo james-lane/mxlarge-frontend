@@ -11,8 +11,10 @@ import { getAdverts } from '@/utils/adverts/getAdverts';
 export const revalidate = 300;
 
 export default async function Home() {
-  const posts: Post[] = await getPosts();
-  const adverts: Advert[] = await getAdverts();
+  const [posts, adverts] = await Promise.all([
+    getPosts(),
+    getAdverts(),
+  ]);
 
   return (
     <main>

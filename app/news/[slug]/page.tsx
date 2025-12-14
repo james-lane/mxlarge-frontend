@@ -61,13 +61,15 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const post = await getPost({ params });
-  const adverts = await getAdverts();
-  const similarStories: Post[] = await sanityFetch({
-    query: similarPostsQuery,
-    tags: ['post'],
-    qParams: { slug: params.slug },
-  });
+  const [post, adverts, similarStories] = await Promise.all([
+    getPost({ params }),
+    getAdverts(),
+    sanityFetch<Post[]>({
+      query: similarPostsQuery,
+      tags: ['post'],
+      qParams: { slug: params.slug },
+    }),
+  ]);
 
   const serializers = {
     types: {
