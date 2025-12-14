@@ -1,23 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 430, 676],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'cdn.sanity.io',
-        port: '',
-        pathname: '/images/8oyzogbt/production/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn.sanity.io',
-        port: '',
-        pathname: '/images/8oyzogbt/stub/**',
-      },
-    ],
-  },
+  // Image config removed - not needed when all images use unoptimized prop
+  // All images are pre-optimized via Sanity CDN
   async redirects() {
     return [
       {

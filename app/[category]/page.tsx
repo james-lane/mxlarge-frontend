@@ -6,8 +6,9 @@ import { AdvertComponent } from '@/lib/advert';
 import { PageContent } from '@/lib/content/pageContent';
 import { getAdverts } from '@/utils/adverts/getAdverts';
 
-// Revalidate every 10 minutes to show latest articles in categories
-export const revalidate = 600;
+// Revalidate every 20 minutes to show latest articles in categories
+// Reduced from 10 min since we have webhook-based on-demand revalidation
+export const revalidate = 1200;
 
 // Pre-render known category pages at build time
 export async function generateStaticParams() {

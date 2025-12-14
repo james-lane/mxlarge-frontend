@@ -23,13 +23,18 @@ export async function sanityFetch<QueryResponse>({
   query,
   qParams = {},
   tags,
+  revalidate,
 }: {
   query: string;
   qParams?: QueryParams;
   tags: string[];
+  revalidate?: number | false;
 }): Promise<QueryResponse> {
+  // When revalidate is specified, don't use force-cache (they conflict)
+  const cacheOption = revalidate !== undefined ? undefined : 'force-cache';
+
   return client.fetch<QueryResponse>(query, qParams, {
-    cache: 'force-cache',
-    next: { tags },
+    ...(cacheOption && { cache: cacheOption }),
+    next: { tags, ...(revalidate !== undefined && { revalidate }) },
   });
 }
