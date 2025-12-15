@@ -31,16 +31,16 @@ export const ArticleCard = ({
           src={img}
           alt={`${title} image`}
           className={styles.image}
-          width={676}
-          height={380}
+          width={1352}
+          height={760}
         />
       ) : (
         <SanityImage
           src={img}
           alt={`${title} image`}
           className={styles.image}
-          width={430}
-          height={242}
+          width={860}
+          height={484}
         />
       )}
       <Description

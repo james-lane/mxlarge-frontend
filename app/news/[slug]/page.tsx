@@ -80,8 +80,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
       image: ({ value }: any) => {
         const { width: originalWidth, height: originalHeight } = getImageDimensions(value.asset);
 
-        // Calculate proportional height for target width of 596
-        const targetWidth = 596;
+        // Calculate proportional height for target width of 1192 (2x for retina)
+        const targetWidth = 1192;
         const proportionalHeight = Math.round((originalHeight / originalWidth) * targetWidth);
 
         return (
@@ -109,8 +109,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <div className={styles.imageContainer}>
         <SanityImage
           src={post.imageAsset}
-          width={1024}
-          height={480}
+          width={2048}
+          height={960}
           alt={post.title || 'Story hero image'}
           className={styles.image}
           priority
