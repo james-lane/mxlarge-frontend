@@ -110,9 +110,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <SanityImage
           src={post.imageAsset}
           width={2048}
-          height={960}
+          height={1152}
           alt={post.title || 'Story hero image'}
           className={styles.image}
+          sizes="100vw"
           priority
         />
       </div>

@@ -33,6 +33,7 @@ export const ArticleCard = ({
           className={styles.image}
           width={1352}
           height={760}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 676px"
         />
       ) : (
         <SanityImage
@@ -41,6 +42,7 @@ export const ArticleCard = ({
           className={styles.image}
           width={860}
           height={484}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 430px"
         />
       )}
       <Description
